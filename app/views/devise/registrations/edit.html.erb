@@ -4,6 +4,11 @@
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: 'name', required: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
     <small class="form-text text-muted">学内メール(@**.ritsumei.ac.jp)でないと登録できません</small>

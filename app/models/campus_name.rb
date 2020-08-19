@@ -1,0 +1,2 @@
+class CampusName < ApplicationRecord
+end
