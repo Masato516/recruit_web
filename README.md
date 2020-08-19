@@ -1,24 +1,20 @@
-# README
+# 被験者募集サイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+被験者の応募要項を掲載するためのサイトとして作成しました。
+被験者を応募するユーザーは学内メールで登録してもらい、募集内容を投稿できるようにする機能になります。
+応募する際にはWYSIWYFテキストを用いることができるようにしております。
 
-Things you may want to cover:
 
-* Ruby version
+* Ruby: 2.7.1
 
-* System dependencies
+* Rails: 5.4.3
 
-* Configuration
+* ログイン機能: Devise 4.7.2
 
-* Database creation
+* データベース: MySQL 8.0.21
 
-* Database initialization
+* リッチテキスト: Trix 2.2.0
 
-* How to run the test suite
+* 日本語化: rails-18n, devise-i18n
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Bootstrap: 4.3.1
