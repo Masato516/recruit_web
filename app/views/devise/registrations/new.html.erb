@@ -4,8 +4,13 @@
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label :name, "名前" %>
     <%= f.text_field :name, autofocus: true, required: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :faculty_id, "所属学部・研究科" %>
+    <%= f.select :faculty_id, Faculty.all.map { |faculty| [faculty.name, faculty.id] } %>
   </div>
 
   <div class="form-group">
