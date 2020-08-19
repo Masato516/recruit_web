@@ -1,0 +1,72 @@
+<p>
+  <strong>Title:</strong>
+  <%= @board.title %>
+</p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @board.abstract %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @board.detail %>
+</p>
+
+<p>
+  <strong>Campus name:</strong>
+  <%= @board.campus_name_id %>
+</p>
+
+<p>
+  <strong>Laboratory:</strong>
+  <%= @board.laboratory %>
+</p>
+
+<p>
+  <strong>Start day:</strong>
+  <%= @board.start_day %>
+</p>
+
+<p>
+  <strong>Finish day:</strong>
+  <%= @board.finish_day %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @board.place %>
+</p>
+
+<p>
+  <strong>Reward:</strong>
+  <%= @board.reward_id %>
+</p>
+
+<p>
+  <strong>Reward content:</strong>
+  <%= @board.reward_content %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @board.number %>
+</p>
+
+<p>
+  <strong>Charge:</strong>
+  <%= @board.charge %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @board.contact %>
+</p>
+
+<p>
+  <strong>Endline:</strong>
+  <%= @board.endline %>
+</p>
+
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>

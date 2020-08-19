@@ -1,0 +1,87 @@
+<%= form_with(model: board, local: true) do |form| %>
+  <% if board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+
+      <ul>
+      <% board.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abstract %>
+    <%= form.text_area :abstract %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_area :detail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :campus_name_id %>
+    <%= form.number_field :campus_name_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :laboratory %>
+    <%= form.text_field :laboratory %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_day %>
+    <%= form.date_select :start_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finish_day %>
+    <%= form.date_select :finish_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reward_id %>
+    <%= form.number_field :reward_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reward_content %>
+    <%= form.text_field :reward_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :charge %>
+    <%= form.text_field :charge %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact %>
+    <%= form.text_field :contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :endline %>
+    <%= form.date_select :endline %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

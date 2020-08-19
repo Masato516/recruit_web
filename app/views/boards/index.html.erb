@@ -1,0 +1,51 @@
+<h1>Boards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Abstract</th>
+      <th>Detail</th>
+      <th>Campus name</th>
+      <th>Laboratory</th>
+      <th>Start day</th>
+      <th>Finish day</th>
+      <th>Place</th>
+      <th>Reward</th>
+      <th>Reward content</th>
+      <th>Number</th>
+      <th>Charge</th>
+      <th>Contact</th>
+      <th>Endline</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= board.title %></td>
+        <td><%= board.abstract %></td>
+        <td><%= board.detail %></td>
+        <td><%= board.campus_name_id %></td>
+        <td><%= board.laboratory %></td>
+        <td><%= board.start_day %></td>
+        <td><%= board.finish_day %></td>
+        <td><%= board.place %></td>
+        <td><%= board.reward_id %></td>
+        <td><%= board.reward_content %></td>
+        <td><%= board.number %></td>
+        <td><%= board.charge %></td>
+        <td><%= board.contact %></td>
+        <td><%= board.endline %></td>
+        <td><%= link_to 'Show', board %></td>
+        <td><%= link_to 'Edit', edit_board_path(board) %></td>
+        <td><%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Board', new_board_path %>

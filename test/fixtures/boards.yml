@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  abstract: MyText
+  detail: MyText
+  campus_name_id: 1
+  laboratory: MyString
+  start_day: 2020-08-19
+  finish_day: 2020-08-19
+  place: MyString
+  reward_id: 1
+  reward_content: MyString
+  number: 1
+  charge: MyString
+  contact: MyString
+  endline: 2020-08-19
+
+two:
+  title: MyString
+  abstract: MyText
+  detail: MyText
+  campus_name_id: 1
+  laboratory: MyString
+  start_day: 2020-08-19
+  finish_day: 2020-08-19
+  place: MyString
+  reward_id: 1
+  reward_content: MyString
+  number: 1
+  charge: MyString
+  contact: MyString
+  endline: 2020-08-19
