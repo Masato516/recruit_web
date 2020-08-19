@@ -1,4 +1,4 @@
-<%= form_with(model: board, local: true) do |form| %>
+<%= form_with(model: board, local: true) do |f| %>
   <% if board.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
@@ -11,77 +11,77 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="form-group">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title,  required: true, autofocus: true, autocomplete: 'title', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :abstract %>
-    <%= form.text_area :abstract %>
+  <div class="form-group">
+    <%= f.label :abstract, "概要" %>
+    <%= f.text_area :abstract, required: true, autofocus: true, autocomplete: 'abstract', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_area :detail %>
+  <div class="form-group">
+    <%= f.label :detail, "詳細" %>
+    <%= f.text_area :detail,  required: true, autofocus: true, autocomplete: 'detail', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :campus_name_id %>
-    <%= form.number_field :campus_name_id %>
+  <div class="form-group">
+    <%= f.label :campus_name_id, "実施キャンパス" %>
+    <%= f.select :campus_name_id, CampusName.all.map { |campus_name| [campus_name.name, campus_name.id] } %>
   </div>
 
-  <div class="field">
-    <%= form.label :laboratory %>
-    <%= form.text_field :laboratory %>
+  <div class="form-group">
+    <%= f.label :laboratory, "研究室名" %>
+    <%= f.text_field :laboratory, required: true, autofocus: true, autocomplete: 'laboratory', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :start_day %>
-    <%= form.date_select :start_day %>
+  <div class="form-group">
+    <%= f.label :start_day,"実施期間" %>
+    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
+    ~
+    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
   </div>
 
-  <div class="field">
-    <%= form.label :finish_day %>
-    <%= form.date_select :finish_day %>
+  <div class="form-group">
+    <%= f.label :place, "実施場所" %>
+    <%= f.text_field :place, required: true, autofocus: true, autocomplete: 'field', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :place %>
-    <%= form.text_field :place %>
+  <div class="form-group">
+    <%= f.label :reward_id, "謝礼の有無" %>
+    <%= f.select :reward_id, Reward.all.map { |reward| [reward.name, reward.id] } %>
   </div>
 
-  <div class="field">
-    <%= form.label :reward_id %>
-    <%= form.number_field :reward_id %>
+  <div class="form-group">
+    <%= f.label :reward_content, "報酬内容" %>
+    <%= f.text_field :reward_content, required: true, autofocus: true, autocomplete: 'reward_content', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :reward_content %>
-    <%= form.text_field :reward_content %>
+  <div class="form-group">
+    <%= f.label :number, "募集人数" %>
+    <%= f.number_field :number, min: 1, required: true, autofocus: true, autocomplete: 'number', class: 'form-control'%>
   </div>
 
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.number_field :number %>
+  <div class="form-group">
+    <%= f.label :charge, "責任者" %>
+    <%= f.text_field :charge, required: true, autofocus: true, autocomplete: 'charge', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :charge %>
-    <%= form.text_field :charge %>
+  <div class="form-group">
+    <%= f.label :contact, "連絡先(LINEのIDやメールアドレスなど)" %>
+    <%= f.text_field :contact, required: true, autofocus: true, autocomplete: 'contact', class: 'form-control' %>
+    <small class="form-text text-muted">先頭に"LINEのID"などを記述するようにお願いします</small>
   </div>
 
-  <div class="field">
-    <%= form.label :contact %>
-    <%= form.text_field :contact %>
-  </div>
-
-  <div class="field">
-    <%= form.label :endline %>
-    <%= form.date_select :endline %>
+  <div class="form-group">
+    <%= f.label :end_line, "募集締切日" %>
+    <%= raw sprintf(f.date_select(:end_date,use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "被験者を募集する", class:"btn btn-primary btn-block" %>
   </div>
 <% end %>
