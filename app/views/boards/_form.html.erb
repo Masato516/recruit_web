@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'trix_uploads.js' %>
+
 <%= form_with(model: board, local: true) do |f| %>
   <% if board.errors.any? %>
     <div id="error_explanation">
@@ -25,8 +27,9 @@
 
   <div class="form-group">
     <%= f.label :detail, "詳細" %>
-    <%= f.text_area :detail,  required: true, autofocus: true, autocomplete: 'detail', class: 'form-control' %>
+    <%= f.hidden_field :detail, id: :board_detail, required: true, autofocus: true, autocomplete: 'detail', class: 'form-control' %>
   </div>
+  <trix-editor input="board_detail"></trix-editor>
 
   <div class="form-group">
     <%= f.label :campus_name_id, "実施キャンパス" %>
@@ -40,9 +43,9 @@
 
   <div class="form-group">
     <%= f.label :start_day,"実施期間" %>
-    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control', ),'年','月')+'日' %>
     ~
-    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
@@ -77,11 +80,11 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :end_line, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:end_date,use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', class:'form-control'),'年','月')+'日' %>
+    <%= f.label :endline, "募集締切日" %>
+    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="actions">
-    <%= f.submit "被験者を募集する", class:"btn btn-primary btn-block" %>
+    <%= f.submit "被験者を募集する", onclick:"window.onbeforeunload=null", class:"btn btn-primary btn-block" %>
   </div>
 <% end %>

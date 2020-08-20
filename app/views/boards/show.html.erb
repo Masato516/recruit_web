@@ -10,12 +10,12 @@
 
 <p>
   <strong>Detail:</strong>
-  <%= @board.detail %>
+  <%= sanitize @board.detail %>
 </p>
 
 <p>
   <strong>Campus name:</strong>
-  <%= @board.campus_name_id %>
+  <%= @board.campus_name.name %>
 </p>
 
 <p>
@@ -40,7 +40,7 @@
 
 <p>
   <strong>Reward:</strong>
-  <%= @board.reward_id %>
+  <%= @board.reward.name %>
 </p>
 
 <p>
@@ -66,6 +66,11 @@
 <p>
   <strong>Endline:</strong>
   <%= @board.endline %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @board.user.name %>
 </p>
 
 <% if @board.user_id == current_user.id %>

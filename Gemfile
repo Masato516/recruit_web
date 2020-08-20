@@ -17,6 +17,10 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 # deviseで作成されるviewsにbootstrapmを自動適用させる
 # gem 'devise-bootstrap-views', '~> 1.0'
+# リッチテキスト
+gem 'trix-rails', require: 'trix'
+# 画像アップローダー
+gem 'shrine'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
