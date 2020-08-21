@@ -25,3 +25,13 @@
 .alert-alert {
   @extend .alert-danger;
 }
+
+// ヘッダー
+.navbar {
+  // margin-top: 10px;
+}
+
+#header-caption{
+  font-size: 10px;
+  margin: 0;
+}
