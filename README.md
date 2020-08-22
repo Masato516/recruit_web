@@ -20,3 +20,5 @@
 * 日本語化: rails-18n, devise-i18n
 
 * Bootstrap: 4.3.1
+
+* ページネーション: pagy 3.8

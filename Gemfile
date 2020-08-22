@@ -21,6 +21,8 @@ gem 'jquery-rails'
 gem 'trix-rails', require: 'trix'
 # 画像アップローダー
 gem 'shrine'
+# ページネーション
+gem 'pagy', '~> 3.8', '>= 3.8.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @pagy, @boards = pagy(Board.all)
   end
 
   # GET /boards/1
