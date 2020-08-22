@@ -1,10 +1,12 @@
 <header>
   <div class="header-container">
-    <p id=header-caption>立命館大学の被験者求人情報<br>被験者の募集/参加のための求人サイト</p>
+    <p id=header-caption>
+      立命館大学の被験者求人情報<br>被験者の募集/参加のための求人サイト
+    </p>
     <!-- <img src="/assets/recruit_web_image.png" alt=""> -->
   </div>
   <nav class="navbar navbar-expand-lg navbar-light rounded-bottom border border-success border-top-0" style="background-color:#dbf5bd;">
-    <%= link_to "被験者募集板", root_path, class: 'navbar-brand' %>
+    <%= link_to "リツナビ", root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,6 +26,7 @@
             <%- if user_signed_in? %>
               <%= link_to 'アカウント編集', edit_user_registration_path, class: 'dropdown-item' %>
               <%= link_to '投稿一覧(予定)', edit_user_registration_path, class: 'dropdown-item' %>
+              <%= link_to '新規作成', new_board_path, class: 'dropdown-item' %>
               <div class="dropdown-divider"></div>
               <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             <% else %>

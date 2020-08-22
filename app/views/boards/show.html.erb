@@ -1,78 +1,73 @@
-<p>
-  <strong>Title:</strong>
+
+
+<h1>
   <%= @board.title %>
-</p>
+</h1>
 
 <p>
-  <strong>Abstract:</strong>
+  <strong>概要:</strong>
   <%= @board.abstract %>
 </p>
 
 <p>
-  <strong>Detail:</strong>
+  <strong>詳細</strong>
   <%= sanitize @board.detail %>
 </p>
 
 <p>
-  <strong>Campus name:</strong>
+  <strong>キャンパス:</strong>
   <%= @board.campus_name.name %>
 </p>
 
 <p>
-  <strong>Laboratory:</strong>
+  <strong>研究室:</strong>
   <%= @board.laboratory %>
 </p>
 
 <p>
-  <strong>Start day:</strong>
-  <%= @board.start_day %>
+  <strong>実施期間:</strong>
+  <%= @board.start_day %>~<%= @board.finish_day %>
 </p>
 
 <p>
-  <strong>Finish day:</strong>
-  <%= @board.finish_day %>
-</p>
-
-<p>
-  <strong>Place:</strong>
+  <strong>実施場所:</strong>
   <%= @board.place %>
 </p>
 
 <p>
-  <strong>Reward:</strong>
   <%= @board.reward.name %>
 </p>
 
 <p>
-  <strong>Reward content:</strong>
+  <strong>報酬内容:</strong>
   <%= @board.reward_content %>
 </p>
 
 <p>
-  <strong>Number:</strong>
+  <strong>応募数:</strong>
   <%= @board.number %>
 </p>
 
 <p>
-  <strong>Charge:</strong>
+  <strong>責任者:</strong>
   <%= @board.charge %>
 </p>
 
 <p>
-  <strong>Contact:</strong>
+  <strong>連絡先:</strong>
   <%= @board.contact %>
 </p>
 
 <p>
-  <strong>Endline:</strong>
+  <strong>応募締切日:</strong>
   <%= @board.endline %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>投稿者:</strong>
   <%= @board.user.name %>
 </p>
 
-<% if @board.user_id == current_user.id %>
+<% if @board.user_id == current_user&.id %>
   <%= link_to 'Edit', edit_board_path(@board) %>
 <% end %>
