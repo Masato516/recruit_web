@@ -43,9 +43,9 @@
 
   <div class="form-group">
     <%= f.label :start_day,"実施期間" %>
-    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control', ),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control', ),'年','月')+'日' %>
     ~
-    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
@@ -81,7 +81,7 @@
 
   <div class="form-group">
     <%= f.label :endline, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, prompt:"--", date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="actions">

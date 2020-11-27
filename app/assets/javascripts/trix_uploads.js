@@ -45,8 +45,9 @@ function uploadAttachment(attachment) {
       /////////////////////////////////
     }
     image.src = URL.createObjectURL(file);
+  } else { // 画像(jpg,png)以外のとき
+    
   }
-
 }
 // 添付していたファイルが削除された時に非同期通信でファイルを削除する
 function destroyAttachment(blob_id) {

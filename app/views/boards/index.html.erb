@@ -26,9 +26,8 @@
         投稿者:<%= board.user.name %>
       </p>
       <% if board.user_id == current_user&.id %>
-        <%= link_to 'Show', board %>
-        <%= link_to 'Edit', edit_board_path(board) %>
-        <%= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '編集', edit_board_path(board) %>
+        <%= link_to '削除', board, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
   </div>

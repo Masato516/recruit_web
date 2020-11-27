@@ -1,0 +1,38 @@
+# docker-compose up -d --build コンテナの作成・起動
+# docker-compose start コンテナの起動
+# docker-compose run web rails db:create でコンテナを起動
+# docker-compose exec web /bin/bash でコンテナ内でコマンド実行
+
+version: '3'
+services:
+  db:
+    image: mysql:8.0.21
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - recruit_web_network
+    environment:
+        MYSQL_DATABASE: root
+        MYSQL_ROOT_PASSWORD: password
+    # mysql8.0の認証プラグイン(caching_sha2_password)をmysql_native_passwordに変更
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: recruit_db_container
+  web:
+    build: . # 同じ階層のDockerfileからImageを作成し、コンテナを起動
+    depends_on:
+      - db
+    command: rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/recruit_web
+    networks:
+      - recruit_web_network
+    ports:
+      - "3000:3000"
+    container_name: recruit_web_container
+
+volumes:
+  db_data:
+
+networks:
+  recruit_web_network:
+    name: recruit_web_network

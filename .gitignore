@@ -25,3 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# 保存した画像
+/public/uploads/*
+
+# 環境変数
+/.env
