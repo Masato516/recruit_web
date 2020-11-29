@@ -20,7 +20,7 @@ gem 'jquery-rails'
 # リッチテキスト
 gem 'trix-rails', require: 'trix'
 # 画像アップローダー
-gem 'shrine'
+gem 'shrine', ">= 3.3.0"
 # ページネーション
 gem 'pagy', '~> 3.8', '>= 3.8.3'
 # Use Puma as the app server

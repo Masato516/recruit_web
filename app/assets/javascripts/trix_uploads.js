@@ -5,54 +5,35 @@ Trix.config.attachments.preview.caption = { name: false, size: false }
 // ファイルが添付された時に非同期通信でファイルを送信する
 function uploadAttachment(attachment) {
   var file = attachment.file;
+  var form = new FormData;
+  form.append("Content-Type", file.type);
+  form.append("photo[image]", file);
 
-  if ((file.type == "image/jpeg") || (file.type == "image/png")) {
-    var image = new Image;
-    image.onload = function(){
-      /////////////////////////////////
-      console.log(image.naturalWidth);
-      if (800 < image.naturalWidth) {//画像が800px以上の時
-        attachment.remove();
-        alert('画像の幅を800px以下にしてください');
-      } else {//画像が800px以下の時
-        var form = new FormData;
-        form.append("Content-Type", file.type);
-        form.append("photo[image]", file);
-        var xhr = new XMLHttpRequest;
-        /* HTTPリクエスト初期化＋HTTPメソッドおよびリクエスト先URLの設定 */
-        xhr.open("POST", "/photos.json", true)
-        xhr.setRequestHeader("X-CSRF-Token", Rails.csrfToken());
-        xhr.upload.onprogress = function(event){
-          var progress = event.loaded / event.total * 100;
-          attachment.setUploadProgress(progress);
-        }
-        console.log(image.naturalWidth);
-        xhr.onload = function(){
-          if (xhr.status === 201) {
-            // 文字列を JSON として解析し、文字列によって記述されている JavaScript の値やオブジェクトを構築
-            var data = JSON.parse(xhr.responseText);
-            return attachment.setAttributes({
-              url: data.image_url,
-              href: data.image_url,
-              blob_id: data.id //Photoのidを取得するため
-            })
-          } else {
-            attachment.remove();
-          }
-        }
-        return xhr.send(form);
-      }
-      /////////////////////////////////
-    }
-    image.src = URL.createObjectURL(file);
-  } else { // 画像(jpg,png)以外のとき
-    
+  var xhr = new XMLHttpRequest;
+  xhr.open("POST", "/photos.json", true);
+  xhr.setRequestHeader("X-CSRF-Token", Rails.csrfToken());
+
+  xhr.upload.onprogress = function(event) {
+    var progress = event.loaded / event.total * 100;
+    attachment.setUploadProgress(progress);
   }
+
+  xhr.onload = function() {
+    if (xhr.status === 201) {
+      var data = JSON.parse(xhr.responseText);
+      return attachment.setAttributes({
+        url: data.image_url,
+        href: data.url,
+        blob_id: data.id
+      })
+    }
+  }
+  return xhr.send(form);
 }
 // 添付していたファイルが削除された時に非同期通信でファイルを削除する
 function destroyAttachment(blob_id) {
   var xhr = new XMLHttpRequest;
-  xhr.open("DELETE", "/photos/" + blob_id + ".json", true);
+  xhr.open("DELETE", "../photos/" + blob_id + ".json", true);
   xhr.setRequestHeader("X-CSRF-Token", Rails.csrfToken());
   xhr.send(null);
 }
