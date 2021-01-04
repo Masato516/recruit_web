@@ -4,9 +4,15 @@
 
   <%= bootstrap_devise_error_messages! %>
 
-  <div class="form-group">
-    <%= f.label :name, "名前" %>
-    <%= f.text_field :name, autofocus: true, required: true, class: 'form-control' %>
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <%= f.label :firstName, "姓" %>
+      <%= f.text_field :firstName, autofocus: true, required: true, class: 'form-control' %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :lastName, "名" %>
+      <%= f.text_field :lastName, autofocus: true, required: true, class: 'form-control' %>
+    </div>
   </div>
 
   <div class="form-group">
