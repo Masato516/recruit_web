@@ -20,6 +20,8 @@
             <%= message %>
           </div>
         <% end %>
+        <%# 再読み込みの警告を出さないようにするJSを読み込む %>
+        <%= javascript_include_tag 'cancel_bfcache.js' %>
 
         <%= yield %>
 

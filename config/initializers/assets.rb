@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( trix_uploads.js )
+Rails.application.config.assets.precompile += %w( cancel_bfcache.js trix_uploads.js )
