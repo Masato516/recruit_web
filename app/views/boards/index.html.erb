@@ -1,29 +1,26 @@
 <% @boards.each do |board| %>
   <div class="card mb-3 rounded-lg">
     <div class="card-body">
-      <h5 class="card-title">
+      <h4 class="card-title">
         <%= board.title %>
-      </h5>
+      </h4>
       <p class="card-text">
-        キャンパス:<%= board.campus_name.name %>
+        <b>キャンパス　</b><%= board.campus_name.name %>
       </p>
-      <p class="card-text">
+      <p>
+        <b>実施期間　</b><%= l board.start_day %>~<%= l board.finish_day %>
+      </p>
+      <p>
+        <b>報酬内容　</b><%= board.reward_content %>
+      </p>
+      <p class="abstract">
         <%= board.abstract %>
       </p>
-      <p>
-        実施期間:<%= l board.start_day %>~<%= l board.finish_day %>
-      </p>
-      <p>
-        報酬:<%= board.reward_content %>
-      </p>
-      <%= link_to "詳しく見る", board_path(board), class: "btn btn-primary" %>
+      <%= link_to "もっと見る", board_path(board), class: "card-link" %>
       <p class="card-text">
         <small class="text-muted">
-          応募締め切り日:<%= l board.endline %>
+          応募締切　<%= l board.endline %>まで
         </small>
-      </p>
-      <p class="card-text">
-        投稿者:<%= board.user.name %>
       </p>
       <% if board.user_id == current_user&.id %>
         <%= link_to '編集', edit_board_path(board) %>
