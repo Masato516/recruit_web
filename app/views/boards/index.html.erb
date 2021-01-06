@@ -27,7 +27,7 @@
       </p>
       <% if board.user_id == current_user&.id %>
         <%= link_to '編集', edit_board_path(board) %>
-        <%= link_to '削除', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '削除', board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
       <% end %>
     </div>
   </div>

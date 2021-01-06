@@ -35,3 +35,16 @@
   font-size: 10px;
   margin: 0;
 }
+
+a {
+  text-align: center;
+  img {
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+}
+
+// figcaption {
+//   display: none;
+// }
