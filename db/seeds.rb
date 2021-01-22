@@ -1,6 +1,7 @@
 CampusName.find_or_create_by(id: 1, name: "草津")
 CampusName.find_or_create_by(id: 2, name: "茨木")
 CampusName.find_or_create_by(id: 3, name: "衣笠")
+CampusName.find_or_create_by(id: 4, name: "その他")
 
 Reward.find_or_create_by(id: 1, name: "報酬なし")
 Reward.find_or_create_by(id: 2, name: "謝金あり")
