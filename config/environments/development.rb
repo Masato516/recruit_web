@@ -32,7 +32,19 @@ Rails.application.configure do
   # set up the default URL options for the Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # mailerのメールのプレビューを見るための設定
-  config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.delivery_method = :letter_opener_web
+  # SESのSMTPでメールを送信
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.credentials.dig(:ses_smtp, :servername),
+    port: 587,
+    user_name: Rails.application.credentials.dig(:ses_smtp, :username),
+    password: Rails.application.credentials.dig(:ses_smtp, :password),
+    domain: 'recruit-rits.net',
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.perform_caching = false

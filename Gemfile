@@ -23,8 +23,6 @@ gem 'trix-rails', require: 'trix'
 gem 'shrine', ">= 3.3.0"
 # ページネーション
 gem 'pagy', '~> 3.8', '>= 3.8.3'
-# SMTPサーバー
-gem 'aws-ses'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
