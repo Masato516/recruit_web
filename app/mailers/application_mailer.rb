@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@recruit-rits.net'
+  default from: 'Recruit-Rits <noreply@recruit-rits.net>'
   layout 'mailer'
 end
