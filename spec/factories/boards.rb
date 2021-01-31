@@ -1,5 +1,24 @@
-# require 'rails_helper'
-#
+FactoryBot.define do
+  factory :board do
+    title { '〇〇実験の募集' }
+    abstract { '要約' }
+    detail { '詳細' }
+    laboratory { '〇〇研究室' }
+    start_day { "2020-08-23" }
+    finish_day { "2020-08-28" }
+    place { 'インテグ３階' }
+    reward_id { 2 }
+    reward_content { '図書カード１０００円' }
+    number { 10 }
+    charge { '八木' }
+    contact { 'yaginen10@gmail.com' }
+    endline { "2020-10-01" }
+    user
+    campus_name
+    reward
+  end
+end
+
 # RSpec.describe Board, type: :model do
 #   describe "boardの投稿" do
 #
@@ -68,24 +87,3 @@
 #     end
 #   end
 # end
-
-FactoryBot.define do
-  factory :board do
-    title { '〇〇実験の募集' }
-    abstract { '要約' }
-    detail { '詳細' }
-    laboratory { '〇〇研究室' }
-    start_day { "2020-08-23" }
-    finish_day { "2020-08-28" }
-    place { 'インテグ３階' }
-    reward_id { 2 }
-    reward_content { '図書カード１０００円' }
-    number { 10 }
-    charge { '八木' }
-    contact { 'yaginen10@gmail.com' }
-    endline { "2020-10-01" }
-    user
-    campus_name
-    reward
-  end
-end

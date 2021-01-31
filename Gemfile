@@ -57,7 +57,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # テストフレームワーク
   gem 'rspec-rails', '~> 4.0.1'
-  # gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'factory_bot_rails', '~> 5.1.1'
 end
 
 group :development do

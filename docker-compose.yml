@@ -21,6 +21,7 @@ services:
     build: . # 同じ階層のDockerfileからImageを作成し、コンテナを起動
     depends_on:
       - db
+      - chrome
     command: rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/recruit_web
@@ -29,6 +30,10 @@ services:
     ports:
       - "3000:3000"
     container_name: recruit_web_container
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
 
 volumes:
   db_data:
