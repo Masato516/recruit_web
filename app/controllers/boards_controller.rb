@@ -1,5 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!, only: [:new, :edit, :create]
+  before_action :valid_user!, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /boards
   # GET /boards.json
@@ -28,7 +30,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
+        format.html { redirect_to @board, notice: '募集要項を作成しました' }
         format.json { render :show, status: :created, location: @board }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
+        format.html { redirect_to @board, notice: '募集要項を更新しました' }
         format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class BoardsController < ApplicationController
   def destroy
     @board.destroy
     respond_to do |format|
-      format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
+      format.html { redirect_to boards_url, notice: '募集要項を削除しました' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +73,12 @@ class BoardsController < ApplicationController
     def board_params
       params.require(:board).permit(:title, :abstract, :detail, :campus_name_id, :laboratory, :start_day, :finish_day, :place, :reward_id, :reward_content, :number, :charge, :contact, :endline, :user_id)
     end
-end
+
+    def valid_user!
+      board = Board.find(params[:id])
+      unless current_user.id == board.user_id 
+        flash[:danger] = '作成ユーザーでないと編集できません'
+        redirect_back(fallback_location: board_path(board))
+      end
+    end
+  end

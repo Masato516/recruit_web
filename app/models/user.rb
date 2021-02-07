@@ -7,9 +7,9 @@ class User < ApplicationRecord
 
   has_many :boards
   belongs_to :faculty
+  before_create :join_name
 
-  before_create :create_name
-  def create_name
+  def join_name
     self.name = "#{firstName} #{lastName}"
   end
 end
