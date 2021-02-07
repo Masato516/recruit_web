@@ -29,11 +29,18 @@ services:
       - recruit_web_network
     ports:
       - "3000:3000"
+    environment:
+      SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
+      RUBYOPT: -W0
     container_name: recruit_web_container
   chrome:
     image: selenium/standalone-chrome:latest
+    networks:
+      - recruit_web_network
     ports:
-      - 4444:4444
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
 
 volumes:
   db_data:
