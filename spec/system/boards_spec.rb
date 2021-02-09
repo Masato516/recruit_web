@@ -4,12 +4,11 @@ describe '掲示板管理機能', type: :system do
   faculty_a = Faculty.first
   campus_name_a = CampusName.first
   reward_a = Reward.first
+  let(:user_a) { create(:user, faculty: faculty_a) }
+  let(:user_b) { create(:user, faculty: faculty_a) }
 
   describe '一覧表示機能' do
     let!(:board) { create(:board, user: creator_user, campus_name: campus_name_a, reward: reward_a) }
-    let(:user_a) { create(:user, faculty: faculty_a) }
-    let(:user_b) { create(:user, faculty: faculty_a) }
-    
     context 'ユーザーAとしてログインしている時' do
       before do
         user_a.skip_confirmation!
@@ -19,6 +18,7 @@ describe '掲示板管理機能', type: :system do
         fill_in 'パスワード', with: user_a.password
         click_button 'ログイン'
       end
+
       context '募集要項の作成者がAの時' do
         let(:creator_user) { user_a }
         it 'ユーザーAが作成した募集要項に編集ボタンされ、募集要項一覧が表示される' do
@@ -48,8 +48,6 @@ describe '掲示板管理機能', type: :system do
 
   describe '作成機能' do
     context 'ユーザーがログインしている時' do
-      let(:login_user) { user_a } ##### ログインできてない
-
       before do
         visit new_board_path
         fill_in 'タイトル', with: '地獄の実験'
