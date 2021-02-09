@@ -6,13 +6,11 @@ describe '掲示板管理機能', type: :system do
   reward_a = Reward.first
 
   describe '一覧表示機能' do
-    # let!(:board) { create(:board, user: user_b, campus_name: campus_name_a, reward: reward_a) } 
+    let!(:board) { create(:board, user: creator_user, campus_name: campus_name_a, reward: reward_a) }
+    let(:user_a) { create(:user, faculty: faculty_a) }
+    let(:user_b) { create(:user, faculty: faculty_a) }
     
     context 'ユーザーAとしてログインしている時' do
-
-      let(:user_a) { create(:user, faculty: faculty_a) }
-      let(:user_b) { create(:user, faculty: faculty_a) }
-
       before do
         user_a.skip_confirmation!
         user_a.save!
@@ -21,36 +19,25 @@ describe '掲示板管理機能', type: :system do
         fill_in 'パスワード', with: user_a.password
         click_button 'ログイン'
       end
-
-      # before do
-      #   # user_a.skip_confirmation!
-      #   # create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a)
-      #   login_user.skip_confirmation
-      #   visit new_user_session_path
-      #   fill_in 'Eメール', with: login_user.email
-      #   fill_in 'パスワード', with: login_user.password
-      #   click_button 'ログイン'
-      # end
-      context '作成者がAの時' do
-        let!(:board) { create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a) }
+      context '募集要項の作成者がAの時' do
+        let(:creator_user) { user_a }
         it 'ユーザーAが作成した募集要項に編集ボタンされ、募集要項一覧が表示される' do
           visit boards_path
           expect(page).to have_content '実験の募集'
           expect(page).to have_content '編集'
         end
       end
-
-      context '作成者がBの時' do
-        let!(:board) { create(:board, user: user_b, campus_name: campus_name_a, reward: reward_a) }
-        it 'ユーザーAが作成した募集要項に編集ボタンには表示されないず、募集要項一覧が表示される' do
+      context '募集要項の作成者がBの時' do
+        let(:creator_user) { user_b }
+        it 'ユーザーBが作成した募集要項に編集ボタンには表示されないず、募集要項一覧が表示される' do
           visit boards_path
           expect(page).to have_content '実験の募集'
           expect(page).to have_no_content '編集'
         end
       end
     end
-
     context "ログインしていない時" do
+      let(:creator_user) { user_a }
       it '編集ボタンには表示されないず、一覧が表示される' do
         visit boards_path
         expect(page).to have_content '実験の募集'
