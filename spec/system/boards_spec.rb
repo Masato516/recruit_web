@@ -1,92 +1,149 @@
 require 'rails_helper'
 
 describe '掲示板管理機能', type: :system do
-  describe '一覧表示機能' do
-    before do
-      faculty_a = FactoryBot.create(
-        :faculty,
-        id: 20,
-        name: 'スポーツ健康科学学部'
-      )
-      user_a = FactoryBot.create(
-        :user, 
-        name: 'ユーザーA', 
-        email: 'a@ed.ritsumei.ac.jp', 
-        password: 'password', 
-        faculty: faculty_a
-      )
-      user_a.confirm
-      campus_name_a = FactoryBot.create(
-        :campus_name,
-        id: 20,
-        name: 'アイルランド'
-      )
-      reward_a = FactoryBot.create(
-        :reward,
-        id: 20,
-        name: '報酬あり'
-      )
-      FactoryBot.create(
-        :board, 
-        title: 'Aの実験の募集', 
-        abstract: '要約A', 
-        detail: '詳細A', 
-        campus_name: campus_name_a, 
-        laboratory: 'A研究室', 
-        start_day: "2020-08-23", 
-        finish_day: "2020-08-28", 
-        place: 'A棟3階', 
-        reward: reward_a, 
-        reward_content: '1000円', 
-        number: 15, 
-        charge: 'Aoki', 
-        contact: 'a@ed.ritsumei.ac.jp', 
-        endline: "2020-08-28", 
-        user: user_a
-      )
-    end
+  faculty_a = Faculty.first
+  campus_name_a = CampusName.first
+  reward_a = Reward.first
 
-    context 'ユーザーAがログインしているとき' do
+  describe '一覧表示機能' do
+    # let!(:board) { create(:board, user: user_b, campus_name: campus_name_a, reward: reward_a) } 
+    
+    context 'ユーザーAとしてログインしている時' do
+
+      let(:user_a) { create(:user, faculty: faculty_a) }
+      let(:user_b) { create(:user, faculty: faculty_a) }
+
       before do
+        user_a.skip_confirmation!
+        user_a.save!
         visit new_user_session_path
-        fill_in 'Eメール', with: 'a@ed.ritsumei.ac.jp'
-        fill_in 'パスワード', with: 'password'
+        fill_in 'Eメール', with: user_a.email
+        fill_in 'パスワード', with: user_a.password
         click_button 'ログイン'
       end
 
-      it 'ユーザーAが作成した掲示板が表示される' do
-        expect(page).to have_content 'Aの実験の募集'
+      # before do
+      #   # user_a.skip_confirmation!
+      #   # create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a)
+      #   login_user.skip_confirmation
+      #   visit new_user_session_path
+      #   fill_in 'Eメール', with: login_user.email
+      #   fill_in 'パスワード', with: login_user.password
+      #   click_button 'ログイン'
+      # end
+      context '作成者がAの時' do
+        let!(:board) { create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a) }
+        it 'ユーザーAが作成した募集要項に編集ボタンされ、募集要項一覧が表示される' do
+          visit boards_path
+          expect(page).to have_content '実験の募集'
+          expect(page).to have_content '編集'
+        end
+      end
+
+      context '作成者がBの時' do
+        let!(:board) { create(:board, user: user_b, campus_name: campus_name_a, reward: reward_a) }
+        it 'ユーザーAが作成した募集要項に編集ボタンには表示されないず、募集要項一覧が表示される' do
+          visit boards_path
+          expect(page).to have_content '実験の募集'
+          expect(page).to have_no_content '編集'
+        end
+      end
+    end
+
+    context "ログインしていない時" do
+      it '編集ボタンには表示されないず、一覧が表示される' do
+        visit boards_path
+        expect(page).to have_content '実験の募集'
+        expect(page).to have_no_content '編集'
       end
     end
   end
 
-  describe '掲示板作成機能' do
+  describe '作成機能' do
+    context 'ユーザーがログインしている時' do
+      let(:login_user) { user_a } ##### ログインできてない
 
-    context 'ユーザーがログインしているとき' do
       before do
-        visit new_user_session_path
-        fill_in 'Eメール', with: 'a@ed.ritsumei.ac.jp'
-        fill_in 'パスワード', with: 'password'
-        click_button 'ログイン'
+        visit new_board_path
+        fill_in 'タイトル', with: '地獄の実験'
+        fill_in '概要', with: 'VO2max65%の運動強度での60分間の自転車運動'
+        select '草津', from: '実施キャンパス'
+        fill_in '研究室名', with: 'ブラック研究室'
+        select '2021', from: 'board_start_day_1i'
+        select '1', from: 'board_start_day_2i'
+        select '1', from: 'board_start_day_3i'
+        select '2021', from: 'board_finish_day_1i'
+        select '1', from: 'board_finish_day_2i'
+        select '10', from: 'board_finish_day_3i'
+        fill_in '実施場所', with: 'インテグレーションコア３階'
+        select '謝金あり', from: '謝礼の有無'
+        fill_in '報酬内容', with: '20000円'
+        fill_in '募集人数', with: 15
+        fill_in '責任者', with: '八木雅斗'
+        fill_in '連絡先(LINEのIDやメールアドレスなど)', with: '0909548****'
       end
 
       it '掲示板(画像なし)が作成できる' do
-        expect(page).to have_content ''
+        find('#trix-editor').set('あとで書く')
+        click_button '被験者を募集する'
+        expect(current_path).to eq board_path # 現在のページが特定のパスであることを検証する
+        expect(page).to have_content '地獄の実験'
       end
 
-      it '掲示板(画像あり)が作成できる' do
-        expect(page).to have_content ''
+      it '掲示板(画像あり)が作成できる' do ##### ログインできてない
+        attach_file_to_trix_editor('/workspace/spec/files/image.png')
+        click_button '被験者を募集する'
+        expect(current_path).to eq board_path # 現在のページが特定のパスであることを検証する
+        expect(page).to have_content '地獄の実験'
+        expect(page).to have_selector("img")
+      end
+    end
+
+    context 'ユーザーがログインしていない時' do
+      it '作成画面に遷移できない' do ######### ログインできてない
+        visit new_board_path
+        expect(page).to have_content '作成ユーザーでないと編集できません'
       end
     end
   end
 
+  describe '編集機能' do
+    # context "ログインしている時" do
+    #   let(:login_user) { user_a }
+    #   it '掲示板(画像あり)が編集できる' do
+    #     expect(page).to have_content 
+    #   end
+    # end
+
+    # context "ログインしていない時" do
+    #   it '編集画面に遷移できない' do
+    #     expect(page).to have_content '作成ユーザーでないと編集できません'
+    #   end
+    # end
+
+    # context "作成したユーザーでない時" do
+      
+    # end
+    
+  end
+
   describe '詳細表示機能' do
-    before do
-      visit board_path # boardのidが必要！！
+    let!(:board) { create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a) } 
+
+    context "ログインしている時" do
+      let(:login_user) { user_a }
+      
+      it '編集ボタンと募集要項の詳細が表示される' do # Couldn't find Board with 'id'=5
+        visit board_path(board.id)
+        expect(page).to have_content '' 
+      end
     end
 
-    it '募集要項の詳細が表示される' do
-      expect(page).to have_content '' # 詳細表示時に出る内容を入れる！！
+    context "ログインしていない時" do # Couldn't find Board with 'id'=6
+      it '募集要項の詳細が表示される' do
+        visit board_path(board.id)
+        expect(page).to have_content '' # 詳細表示時に出る内容を入れる！！
+      end
     end
   end
 end
