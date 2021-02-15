@@ -28,8 +28,8 @@
     <%= f.hidden_field :detail, id: :board_detail, required: true, autofocus: true, autocomplete: 'detail', class: 'form-control' %>
   </div>
   
-  <p id='file-status' ></p>
   <trix-editor input="board_detail", id="trix-editor"></trix-editor>
+  <small>※ファイルサイズは10MBまでです</small>
 
   <div class="form-group">
     <%= f.label :campus_name_id, "実施キャンパス" %>
