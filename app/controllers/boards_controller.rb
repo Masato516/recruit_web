@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:new, :edit, :create]
-  before_action :valid_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :valid_user!, only: [:edit, :update, :destroy]
 
   # GET /boards
   # GET /boards.json
@@ -71,7 +71,7 @@ class BoardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def board_params
-      params.require(:board).permit(:title, :abstract, :detail, :campus_name_id, :laboratory, :start_day, :finish_day, :place, :reward_id, :reward_content, :number, :charge, :contact, :endline, :user_id)
+      params.require(:board).permit(:title, :abstract, :detail, :campus_name_id, :laboratory, :start_day, :finish_day, :place, :reward_id, :reward_content, :number, :charge, :contact, :endline).merge(user_id: current_user.id)
     end
 
     def valid_user!
