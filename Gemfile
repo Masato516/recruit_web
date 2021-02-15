@@ -21,6 +21,8 @@ gem 'jquery-rails'
 gem 'trix-rails', require: 'trix'
 # 画像アップローダー
 gem 'shrine', ">= 3.3.0"
+# S3バケットへのアップロード
+gem "aws-sdk-s3", "~> 1.14" 
 # ページネーション
 gem 'pagy', '~> 3.8', '>= 3.8.3'
 # Use Puma as the app server
