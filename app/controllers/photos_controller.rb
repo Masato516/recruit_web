@@ -25,14 +25,15 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-
+    # p mime_type = @photo.image.mime_type # @photo.imageでShrine::UploadedFileを呼んでる
+    # if mime_type.include?('image')
+    #   p @photo = @photo.image_derivatives!
+    # end
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
-        format.html { render :new }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }        
       end
     end
   end
@@ -42,10 +43,8 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
       else
-        format.html { render :edit }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
