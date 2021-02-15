@@ -15,10 +15,30 @@
 
 * リッチテキスト: trix-rails 2.2.0
 
-* ファイルアップローダー: Shrine 3.2.2
+* ファイルアップローダー,バリデーション: Shrine 3.2.2
 
 * 日本語化: rails-18n, devise-i18n
 
 * Bootstrap: 4.3.1
 
 * ページネーション: pagy 3.8
+
+* ローカル開発環境： Docker
+
+* テスト用ライブラリ： Rspec
+
+* テスト用ドライバー： standalone-chrome
+
+* ファイルストレージ： S3
+
+* サーバー： EC2
+
+* データベース： RDS
+
+* SMTPサーバー： SES
+
+* ロードバランサー： ELB
+
+* ドメインネームシステム： Route53
+
+* SSL/TLS証明書： ACM
