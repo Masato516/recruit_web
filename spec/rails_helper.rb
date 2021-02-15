@@ -32,6 +32,7 @@ end
 
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:each, type: :system) do
     driven_by :remote_chrome

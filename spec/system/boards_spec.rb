@@ -7,16 +7,25 @@ describe '掲示板管理機能', type: :system do
   let(:user_a) { create(:user, faculty: faculty_a) }
   let(:user_b) { create(:user, faculty: faculty_a) }
 
+  shared_context 'ユーザーAとしてログイン' do
+    before do
+      user_a.skip_confirmation!
+      user_a.save!
+      visit new_user_session_path
+      fill_in 'Eメール', with: user_a.email
+      fill_in 'パスワード', with: user_a.password
+      click_button 'ログイン'
+    end
+  end
+
   describe '一覧表示機能' do
     let!(:board) { create(:board, user: creator_user, campus_name: campus_name_a, reward: reward_a) }
     context 'ユーザーAとしてログインしている時' do
-      before do
-        user_a.skip_confirmation!
-        user_a.save!
-        visit new_user_session_path
-        fill_in 'Eメール', with: user_a.email
-        fill_in 'パスワード', with: user_a.password
-        click_button 'ログイン'
+      include_context 'ユーザーAとしてログイン'
+
+      # 募集要項表示の確認
+      shared_example '' do
+        it { is_expected.to eq '' }
       end
 
       context '募集要項の作成者がAの時' do
@@ -45,9 +54,31 @@ describe '掲示板管理機能', type: :system do
       end
     end
   end
+  describe '詳細表示機能' do
+    let!(:board) { create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a) } 
 
+    context "ログインしている時" do
+      include_context 'ユーザーAとしてログイン'
+      
+      it '編集ボタンと募集要項の詳細が表示される' do
+        visit board_path(board.id)
+        expect(page).to have_content '実験の募集'
+        expect(page).to have_content '編集'
+      end
+    end
+
+    context "ログインしていない時" do
+      it '募集要項の詳細が表示される' do
+        visit board_path(board.id)
+        expect(page).to have_content '実験の募集'
+        expect(page).to have_no_content '編集'
+      end
+    end
+  end
   describe '作成機能' do
     context 'ユーザーがログインしている時' do
+      include_context 'ユーザーAとしてログイン'
+      
       before do
         visit new_board_path
         fill_in 'タイトル', with: '地獄の実験'
@@ -71,7 +102,7 @@ describe '掲示板管理機能', type: :system do
       it '掲示板(画像なし)が作成できる' do
         find('#trix-editor').set('あとで書く')
         click_button '被験者を募集する'
-        expect(current_path).to eq board_path # 現在のページが特定のパスであることを検証する
+        expect(current_path).to eq board_path
         expect(page).to have_content '地獄の実験'
       end
 
@@ -87,7 +118,7 @@ describe '掲示板管理機能', type: :system do
     context 'ユーザーがログインしていない時' do
       it '作成画面に遷移できない' do ######### ログインできてない
         visit new_board_path
-        expect(page).to have_content '作成ユーザーでないと編集できません'
+        expect(page).to have_content 'アカウント登録もしくはログインしてください。'
       end
     end
   end
@@ -109,26 +140,5 @@ describe '掲示板管理機能', type: :system do
     # context "作成したユーザーでない時" do
       
     # end
-    
-  end
-
-  describe '詳細表示機能' do
-    let!(:board) { create(:board, user: user_a, campus_name: campus_name_a, reward: reward_a) } 
-
-    context "ログインしている時" do
-      let(:login_user) { user_a }
-      
-      it '編集ボタンと募集要項の詳細が表示される' do # Couldn't find Board with 'id'=5
-        visit board_path(board.id)
-        expect(page).to have_content '' 
-      end
-    end
-
-    context "ログインしていない時" do # Couldn't find Board with 'id'=6
-      it '募集要項の詳細が表示される' do
-        visit board_path(board.id)
-        expect(page).to have_content '' # 詳細表示時に出る内容を入れる！！
-      end
-    end
   end
 end
