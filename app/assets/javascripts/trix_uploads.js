@@ -19,13 +19,15 @@ function uploadAttachment(attachment) {
   }
 
   xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
     if (xhr.status === 201) {
-      var data = JSON.parse(xhr.responseText);
       return attachment.setAttributes({
         url: data.image_url,
         href: data.image_url,
         blob_id: data.id
       })
+    } else if (xhr.status >= 400){
+      alert(`ファイルのアップロードに失敗しました。\n${data.image}`);
     }
   }
   return xhr.send(form);
