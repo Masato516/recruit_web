@@ -25,6 +25,8 @@ gem 'shrine', ">= 3.3.0"
 gem "aws-sdk-s3", "~> 1.14" 
 # ページネーション
 gem 'pagy', '~> 3.8', '>= 3.8.3'
+# 管理画面
+gem 'rails_admin', '~> 2.0', '>= 2.0.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

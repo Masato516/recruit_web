@@ -23,6 +23,8 @@
 
 * ページネーション: pagy 3.8
 
+* 管理画面: rails_admin 2.0.2
+
 * Webサーバー： Nginx
 
 * ローカル開発環境： Docker
