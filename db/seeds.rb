@@ -16,4 +16,4 @@ faculty_arry.map.with_index(1) {|faculty, index|
   )
 }
 
-User.find_or_create_by(id: 1, name: '管理者', email: Rails.application.credentials.dig(:admin_user, :email), password: Rails.application.credentials.dig(:admin_user, :password), confirmed_at: Time.now)
+User.create!(id: 1, firstName: '八木', lastName: '雅斗', admin: true, faculty_id: 1, email: Rails.application.credentials.dig(:admin_user, :email), password: Rails.application.credentials.dig(:admin_user, :password), confirmed_at: Time.now)
