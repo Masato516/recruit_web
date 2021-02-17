@@ -73,7 +73,7 @@ Rails.application.configure do
   # SESのSMTPでメールを送信
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: Rails.application.credentials.dig(:ses_smtp, :address),
+    address: Rails.application.credentials.dig(:ses_smtp, :servername),
     port: 587,
     user_name: Rails.application.credentials.dig(:ses_smtp, :username),
     password: Rails.application.credentials.dig(:ses_smtp, :password),
