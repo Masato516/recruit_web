@@ -11,26 +11,24 @@
   </head>
 
   <body>
-    <div class="container">
-      <%= render 'shared/header' %>
 
-      <!-- <div class="container-login"> -->
+    <%= render 'shared/header' %>
 
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>">
-            <%= message %>
-          </div>
-        <% end %>
-        <%# 再読み込みの警告を出さないようにするJSを読み込む %>
-        <%= javascript_include_tag 'cancel_bfcache.js' %>
+    <!-- <div class="container-login"> -->
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>">
+          <%= message %>
+        </div>
+      <% end %>
+      <%# 再読み込みの警告を出さないようにするJSを読み込む %>
+      <%= javascript_include_tag 'cancel_bfcache.js' %>
 
-        <%= yield %>
+      <%= yield %>
 
-      <!-- </div> -->
+    <!-- </div> -->
       
-      <%= debug(params) if Rails.env.development? %>
+    <%= debug(params) if Rails.env.development? %>
 
-      <%= render 'shared/footer' %>
-    </div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

@@ -1,57 +1,61 @@
-<h1>
-  <%= @board.title %>
-</h1>
+<div class="container text-white">
 
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <th scope="row" class="table-active">実施キャンパス</th>
-      <td colspan="2"><%= @board.campus_name.name %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">実施場所</th>
-      <td colspan="2"><%= @board.place %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">報酬</th>
-      <td colspan="2"><%= @board.reward.name %>：<%= @board.reward_content %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">研究室</th>
-      <td colspan="2"><%= @board.laboratory %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">投稿者</th>
-      <td colspan="2"><%= @board.user.name %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">実施期間</th>
-      <td colspan="2"><%= l @board.start_day %>〜<%= l @board.finish_day %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">応募人数</th>
-      <td colspan="2"><%= @board.number %>人</td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">連絡先</th>
-      <td colspan="2"><%= @board.contact %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">詳細</th>
-      <td colspan="2"><%= sanitize @board.detail %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">責任者</th>
-      <td colspan="2"><%= @board.charge %></td>
-    </tr>
-    <tr>
-      <th scope="row" class="table-active">応募締切日</th>
-      <td colspan="2"><%= l @board.endline %></td>
-    </tr>
-  </tbody>
-</table>
+  <h1>
+    <%= @board.title %>
+  </h1>
 
-<% if @board.user_id == current_user&.id %>
-  <%= link_to '編集', edit_board_path(@board) %>
-  <%= link_to '削除', @board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-<% end %>
+  <table class="table table-bordered table-dark">
+    <tbody>
+      <tr>
+        <th scope="row" class="table-active">実施キャンパス</th>
+        <td colspan="2"><%= @board.campus_name.name %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">実施場所</th>
+        <td colspan="2"><%= @board.place %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">報酬</th>
+        <td colspan="2"><%= @board.reward.name %>：<%= @board.reward_content %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">研究室</th>
+        <td colspan="2"><%= @board.laboratory %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">投稿者</th>
+        <td colspan="2"><%= @board.user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">実施期間</th>
+        <td colspan="2"><%= l @board.start_day %>〜<%= l @board.finish_day %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">応募人数</th>
+        <td colspan="2"><%= @board.number %>人</td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">連絡先</th>
+        <td colspan="2"><%= @board.contact %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">詳細</th>
+        <td colspan="2"><%= sanitize @board.detail, class: "" %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">責任者</th>
+        <td colspan="2"><%= @board.charge %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-active">応募締切日</th>
+        <td colspan="2"><%= l @board.endline %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <% if @board.user_id == current_user&.id %>
+    <%= link_to '編集', edit_board_path(@board) %>
+    <%= link_to '削除', @board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <% end %>
+
+</div>

@@ -26,15 +26,6 @@
   @extend .alert-danger;
 }
 
-header {
-  margin-bottom: 10px;
-}
-
-#header-caption {
-  font-size: 10px;
-  margin: 0;
-}
-
 a {
   text-align: center;
   img {
@@ -44,6 +35,79 @@ a {
   }
 }
 
-// figcaption {
-//   display: none;
-// }
+.container {
+  padding-top: 15px;
+}
+
+
+#header-caption {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+#banner {
+  background-image: image-url("banner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  border-top: 0;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+#banner:after {
+  transition-delay: 1.25s;
+  content: '';
+  display: block;
+  background-color: #000;
+  height: 100%;
+  left: 0;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+body {
+  color: #fff;
+  background-color: #000;
+}
+
+a {
+  color: #fff;
+}
+
+small {
+  color: #fff;
+}
+
+.card {
+  background-color: rgb(85, 89, 92);
+}
+
+.post .more.current {
+  -moz-transition: height 0.2s ease;
+  -webkit-transition: height 0.2s ease;
+  -ms-transition: height 0.2s ease;
+  transition: height 0.2s ease;
+  -moz-animation: more 0.75s ease-out 2s forwards;
+  -webkit-animation: more 0.75s ease-out 2s forwards;
+  -ms-animation: more 0.75s ease-out 2s forwards;
+  animation: more 0.75s ease-out 2s forwards;
+}
+
+.trix-button {
+  background-color: #fff !important;
+}
+
+footer {
+  background-color: #310606;
+  color: #fdd1d1;
+  padding: 6em 0 4em 0;
+  background: #F64747;
+}

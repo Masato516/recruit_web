@@ -1,33 +1,46 @@
-<% @boards.each do |board| %>
-  <div class="card mb-3 rounded-lg">
-    <div class="card-body">
-      <h4 class="card-title">
-        <%= board.title %>
-      </h4>
-      <p class="card-text">
-        <b>キャンパス　</b><%= board.campus_name.name %>
-      </p>
-      <p>
-        <b>実施期間　</b><%= l board.start_day %>~<%= l board.finish_day %>
-      </p>
-      <p>
-        <b>報酬内容　</b><%= board.reward_content %>
-      </p>
-      <p class="abstract">
-        <%= board.abstract %>
-      </p>
-      <%= link_to "もっと見る", board_path(board), class: "card-link" %>
-      <p class="card-text">
-        <small class="text-muted">
-          応募締切　<%= l board.endline %>まで
-        </small>
-      </p>
-      <% if board.user_id == current_user&.id %>
-        <%= link_to '編集', edit_board_path(board) %>
-        <%= link_to '削除', board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-      <% end %>
-    </div>
+<div id="banner" class="position-relative overflow-hidden p-3 text-center">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-bold">被験者募集<br>掲示板</h1>
+    <p class="lead font-weight-bold">立命館大学の被験者求人情報<br>被験者募集/参加のための<br>求人サイト</p>      
   </div>
-<% end %>
+</div>
+
+<div class="container">
+<div class="row">
+  <% @boards.each do |board| %>
+    <div class="col-md-6">
+      <div class="card mb-3 rounded-lg">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= board.title %>
+          </h4>
+          <p class="card-text">
+            <b>キャンパス　</b><%= board.campus_name.name %>
+          </p>
+          <p>
+            <b>実施期間　</b><%= l board.start_day %>~<%= l board.finish_day %>
+          </p>
+          <p>
+            <b>報酬内容　</b><%= board.reward_content %>
+          </p>
+          <p class="abstract">
+            <%= board.abstract %>
+          </p>
+          <%= link_to "詳細", board_path(board), class: "card-link btn btn-primary", role: "button" %>
+          <p class="card-text">
+            <small>
+              応募締切　<%= l board.endline %>まで
+            </small>
+          </p>
+          <% if board.user_id == current_user&.id %>
+            <%= link_to '編集', edit_board_path(board) %>
+            <%= link_to '削除', board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
