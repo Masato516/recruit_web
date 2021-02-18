@@ -64,4 +64,4 @@
 server ' 52.192.96.31', user: 'masa', rokes: %w{app db web}
 
 #デプロイするサーバーにsshログインする鍵の情報
-set :ssh_options, keys: '~/.ssh/recruit_web_key_rsa' 
+set :ssh_options, keys: '~/.ssh/recruit_web_key_rsa'

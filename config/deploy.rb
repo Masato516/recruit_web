@@ -4,7 +4,7 @@
 # 例 bundle exec cap production deploy:db_create 
 
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.15.0"
+lock "3.15.0"
 
 set :application, "recruit_web"
 set :repo_url, "git@github.com:Masato516/recruit_web.git"
