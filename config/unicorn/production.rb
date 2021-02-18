@@ -37,5 +37,5 @@ end
 
 #fork後に行うことを定義。後述
 after_fork do |server, worker|
-defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+    defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
 end
