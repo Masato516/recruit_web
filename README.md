@@ -46,3 +46,5 @@
 * ドメインネームシステム： Route53
 
 * SSL/TLS証明書： ACM
+
+* デプロイツール： Capistrano
