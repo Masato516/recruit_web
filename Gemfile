@@ -69,6 +69,11 @@ group :development, :test do
   # テストフレームワーク
   gem 'rspec-rails', '~> 4.0.1'
   gem 'factory_bot_rails', '~> 5.1.1'
+
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -82,10 +87,6 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web', '~>1.0'
   
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
 end
 
 group :test do

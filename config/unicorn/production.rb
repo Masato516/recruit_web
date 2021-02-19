@@ -25,11 +25,11 @@ preload_app true
 
 #fork前に行うことを定義。後述
 before_fork do |server, worker|
-defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
-old_pid = "#{server.config[:pid]}.oldbin"
+    defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+    old_pid = "#{server.config[:pid]}.oldbin"
     if old_pid != server.pid
         begin
-        Process.kill "QUIT", File.read(old_pid).to_i
+            Process.kill "QUIT", File.read(old_pid).to_i
         rescue Errno::ENOENT, Errno::ESRCH
         end
     end
