@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @pagy, @boards = pagy(Board.all)
+    @pagy, @boards = pagy(Board.all.order(id: :DESC))
   end
 
   # GET /boards/1
