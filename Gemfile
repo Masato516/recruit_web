@@ -27,6 +27,8 @@ gem "aws-sdk-s3", "~> 1.14"
 gem 'pagy', '~> 3.8', '>= 3.8.3'
 # 管理画面
 gem 'rails_admin', '~> 2.0', '>= 2.0.2'
+# 論理削除
+gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

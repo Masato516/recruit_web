@@ -26,6 +26,8 @@
 
 * 管理画面: rails_admin 2.0.2
 
+* 論理削除: paranoia 2.4.3
+
 * Webサーバー： Nginx
 
 * ローカル開発環境： Docker
