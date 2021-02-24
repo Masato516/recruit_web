@@ -28,9 +28,11 @@
 
 * 論理削除: paranoia 2.4.3
 
+* Twitterへの告知: Twitter 7.0
+
 * Webサーバー： Nginx
 
-* ローカル開発環境： Docker
+* ローカル開発環境： Docker on Mac
 
 * テスト用ライブラリ： Rspec
 
