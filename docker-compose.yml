@@ -32,6 +32,7 @@ services:
     environment:
       SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
       RUBYOPT: -W0
+      TZ: Asia/Tokyo
     container_name: recruit_web_container
   chrome:
     image: selenium/standalone-chrome:latest
