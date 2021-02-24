@@ -25,6 +25,9 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        deleted_at: 削除時刻
+        faculty: 所属学部
+        name: ユーザー名
     models:
       user: ユーザ
   devise:
@@ -44,7 +47,6 @@ ja:
       timeout: セッションがタイムアウトしました。もう一度ログインしてください。
       unauthenticated: アカウント登録もしくはログインしてください。
       unconfirmed: メールアドレスの本人確認が必要です。
-      deleted_account: "このアカウントは既に削除されています。"
     mailer:
       confirmation_instructions:
         action: メールアドレスの確認
