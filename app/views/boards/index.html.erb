@@ -1,46 +1,62 @@
 <div id="banner" class="position-relative overflow-hidden p-3 text-center">
   <div class="col-md-5 p-lg-5 mx-auto my-5">
     <h1 class="display-4 font-weight-bold">被験者募集<br>掲示板</h1>
-    <p class="lead font-weight-bold">立命館大学の被験者求人情報<br>被験者募集/参加のための<br>求人サイト</p>      
+    <p class="lead font-weight-bold">立命館大学の被験者求人情報<br>被験者募集/参加のための<br>求人サイト</p>
+    <br>
+    <a href="/boards/new" class="btn btn-lg btn-outline-light" role="button" aria-pressed="true">投稿する</a>   
   </div>
 </div>
 
 <div class="container">
-<div class="row">
-  <% @boards.each do |board| %>
-    <div class="col-md-6">
-      <div class="card mb-3 rounded-lg">
-        <div class="card-body">
-          <h4 class="card-title">
-            <%= board.title %>
-          </h4>
-          <p class="card-text">
-            <b>キャンパス　</b><%= board.campus_name.name %>
-          </p>
-          <p>
-            <b>実施期間　</b><%= l board.start_day %>~<%= l board.finish_day %>
-          </p>
-          <p>
-            <b>報酬内容　</b><%= board.reward_content %>
-          </p>
-          <p class="abstract">
-            <%= board.abstract %>
-          </p>
-          <%= link_to "詳細", board_path(board), class: "card-link btn btn-primary", role: "button" %>
-          <p class="card-text">
-            <small>
-              応募締切　<%= l board.endline %>まで
-            </small>
-          </p>
-          <% if board.user_id == current_user&.id %>
-            <%= link_to '編集', edit_board_path(board) %>
-            <%= link_to '削除', board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-          <% end %>
+  <div class="card-columns">
+    <% @boards.each do |board| %>
+      <%# <div class="col-md-6"> %>
+        <div class="card mb-3 rounded-lg">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= board.title %>
+            </h4>
+            <p class="card-text">
+              <b>キャンパス　</b><%= board.campus_name.name %>
+            </p>
+            <p>
+              <b>実施期間　</b><%= l board.start_day %>~<%= l board.finish_day %>
+            </p>
+            <p>
+              <b>報酬内容　</b><%= board.reward_content %>
+            </p>
+            <p class="abstract">
+              <%= board.abstract %>
+            </p>
+            <%= link_to "詳細", board_path(board), class: "card-link btn btn-primary", role: "button" %>
+            <p class="card-text">
+              <small>
+                応募締切　<%= l board.endline %>まで
+              </small>
+            </p>
+            <% if board.user_id == current_user&.id %>
+              <%= link_to '編集', edit_board_path(board) %>
+              <%= link_to '削除', board, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+      <%# </div> %>
+    <% end %>
+  </div>
+
+  <%= pagy_bootstrap_nav(@pagy).html_safe %>
 </div>
 
-<%= pagy_bootstrap_nav(@pagy).html_safe %>
+<footer class="footer mt-auto py-3">
+
+<div id="inner">
+  <h2>CONTACT US</h2>
+  <br>
+  <p>&nbsp;</p>
+    <blockquote class="twitter-tweet">
+      <p lang="ja" dir="ltr">こちらのアカウントをフォローしておくと<br>新規募集が投稿された際に<br>自動的にツイートしてくれますー<br><br>バグ報告やご要望等のお問い合わせは<br>こちらのアカウントに連絡お願いします〜</p>&mdash; 被験者募集告知 (@recruit_rits) 
+      <a href="https://twitter.com/recruit_rits/status/1364526642845134848?ref_src=twsrc%5Etfw">February 24, 2021</a>
+    </blockquote>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
+</footer>
