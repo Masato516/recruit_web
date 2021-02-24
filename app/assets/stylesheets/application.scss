@@ -71,6 +71,7 @@ a {
   top: 0;
   width: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 body {
@@ -88,6 +89,15 @@ small {
 
 .card {
   background-color: rgb(85, 89, 92);
+}
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 2;
+  }
 }
 
 .post .more.current {
@@ -110,4 +120,9 @@ footer {
   color: #fdd1d1;
   padding: 6em 0 4em 0;
   background: #F64747;
+  text-align: center;
+}
+
+.twitter-tweet {
+  margin: 0 auto;
 }
