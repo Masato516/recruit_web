@@ -16,4 +16,4 @@ faculty_arry = %w(スポーツ健康科学部・研究科 食料マネジメン�
 #   )
 # }
 
-User.find_or_create_by(firstName: '八木', lastName: '雅斗', admin: true, faculty_id: 1, email: Rails.application.credentials.dig(:admin_user, :email), password: Rails.application.credentials.dig(:admin_user, :password), confirmed_at: Time.now)
+User.find_or_create_by(id: 1,firstName: '八木', lastName: '雅斗', admin: true, faculty_id: 1, email: Rails.application.credentials.dig(:admin_user, :email), password: Rails.application.credentials.dig(:admin_user, :password), confirmed_at: Time.now)
