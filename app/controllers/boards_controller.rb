@@ -29,8 +29,11 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
 
-    if @board.save
-      @client.update("#{@board.title} #{board_url(@board.id)}\r")
+    if @board.save && @board.reward.name == "謝金なし"
+      @client.update("#{@board.title} #{board_url(@board.id)}")
+      redirect_to @board, notice: '募集要項を作成しました'
+    elsif @board.save
+      @client.update("#{@board.title} #{board_url(@board.id)}\n #謝金あり")
       redirect_to @board, notice: '募集要項を作成しました'
     else
       render :new
