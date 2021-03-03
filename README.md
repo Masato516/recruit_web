@@ -5,6 +5,9 @@
 応募する際にはWYSIWYFテキストを用いることができるようにしております。
 [こちら]:(https://www.recruit-rits.net/)
 
+以下でゲストアカウントとしてログインできます。
+Eメール: guest@example.com
+パスワード: password
 
 * Ruby: 2.7.1
 
