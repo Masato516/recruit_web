@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @pagy, @boards = pagy(Board.all.order(id: :DESC))
+    @pagy, @boards = pagy(Board.all.order(id: :DESC).preload(:campus_name, :reward, :user))
   end
 
   # GET /boards/1
@@ -27,7 +27,6 @@ class BoardsController < ApplicationController
     check_box = params[:board][:check]
     @board = Board.new(board_params)
     
-    byebug
     if check_box == "0"
       redirect_to @board, notice: '募集要項を作成しました'
     elsif @board.save && @board.reward.name == "謝金なし"
