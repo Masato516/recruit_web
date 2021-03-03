@@ -84,6 +84,11 @@
     <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
   </div>
 
+  <div class="form-group">
+    <%= f.check_box :check %>
+    <%= f.label :check, "連携アカウントによるツイート" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "被験者を募集する", onclick:"window.onbeforeunload=null", class:"btn btn-primary btn-block" %>
   </div>
