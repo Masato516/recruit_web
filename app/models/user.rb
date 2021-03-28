@@ -13,7 +13,7 @@ class User < ApplicationRecord
          :validatable,
          :confirmable
 
-  has_many :boards
+  has_many :boards, dependent: :destroy
   belongs_to :faculty
   before_create :join_name
 
