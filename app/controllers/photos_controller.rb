@@ -25,10 +25,7 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-    # p mime_type = @photo.image.mime_type # @photo.imageでShrine::UploadedFileを呼んでる
-    # if mime_type.include?('image')
-    #   p @photo = @photo.image_derivatives!
-    # end
+
     respond_to do |format|
       if @photo.save
         format.json { render :show, status: :created, location: @photo }
