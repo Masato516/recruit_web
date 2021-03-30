@@ -13,8 +13,8 @@ ENV APP_ROOT /recruit_web
 WORKDIR $APP_ROOT
 
 #ホスト側からDocker側にGemfileをコピー
-ADD ./Gemfile $APP_ROOT/Gemfile
-ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
+COPY ./Gemfile $APP_ROOT/Gemfile
+COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
 RUN bundle install
-ADD . $APP_ROOT
+COPY . $APP_ROOT
