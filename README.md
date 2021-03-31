@@ -11,7 +11,7 @@ Eメール: guest@example.com
 
 * Ruby: 2.7.1
 
-* Rails: 5.5
+* Rails: 5.2.5
 
 * ログイン機能: Devise 4.7.2
 
