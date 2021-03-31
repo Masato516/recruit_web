@@ -11,7 +11,7 @@ Eメール: guest@example.com
 
 * Ruby: 2.7.1
 
-* Rails: 5.4.3
+* Rails: 5.5
 
 * ログイン機能: Devise 4.7.2
 
@@ -35,7 +35,7 @@ Eメール: guest@example.com
 
 * Webサーバー： Nginx
 
-* ローカル開発環境： Docker on Mac
+* ローカル開発環境： Docker on Mac, docker-compose
 
 * テスト用ライブラリ： Rspec
 
