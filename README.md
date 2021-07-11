@@ -37,8 +37,6 @@ Eメール: guest@example.com
 
 * Webサーバー： Nginx
 
-* ローカル開発環境： Docker on Mac, docker-compose
-
 * テスト用ライブラリ： Rspec
 
 * テスト用ドライバー： standalone-chrome
@@ -58,3 +56,5 @@ Eメール: guest@example.com
 * SSL/TLS証明書： ACM
 
 * デプロイツール： Capistrano
+
+* ローカル開発環境： Docker on Mac, docker-compose, letter_opener, annotate
