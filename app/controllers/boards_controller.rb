@@ -64,12 +64,26 @@ class BoardsController < ApplicationController
   end
 
   private
+  
     def set_board
       @board = Board.find(params[:id])
     end
 
     def board_params
-      params.require(:board).permit(:title, :abstract, :detail, :campus_name_id, :laboratory, :start_day, :finish_day, :place, :reward_id, :reward_content, :number, :charge, :contact, :endline).merge(user_id: current_user.id)
+      params.require(:board).permit(:title, 
+                                    :abstract, 
+                                    :detail, 
+                                    :campus_name_id, 
+                                    :laboratory, 
+                                    :start_day, 
+                                    :finish_day, 
+                                    :place, 
+                                    :reward_id, 
+                                    :reward_content, 
+                                    :number, :charge, 
+                                    :contact, 
+                                    :endline)
+                                    .merge(user_id: current_user.id)
     end
 
     def valid_user?
