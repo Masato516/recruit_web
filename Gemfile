@@ -80,6 +80,9 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  # 仮データ情報の用意
+  gem 'faker'
+  gem 'gimei'
 end
 
 group :development do
