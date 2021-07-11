@@ -57,4 +57,4 @@ Eメール: guest@example.com
 
 * デプロイツール： Capistrano
 
-* ローカル開発環境： Docker on Mac, docker-compose, letter_opener, annotate
+* ローカル開発環境： Docker on Mac, docker-compose, letter_opener, annotate, Faker, Gimei
