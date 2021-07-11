@@ -31,6 +31,8 @@ gem 'rails_admin', '~> 2.0', '>= 2.0.2'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 # Bot作成
 gem 'twitter', '~> 7.0'
+# ActiveHash
+gem 'active_hash'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
