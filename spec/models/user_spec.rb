@@ -30,26 +30,24 @@
 #  index_users_on_email_and_deleted_at  (email,deleted_at) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-class User < ApplicationRecord
-  attr_accessor :firstName, :lastName
+require 'rails_helper'
 
-  acts_as_paranoid
-  validates :email, uniqueness: { scope: :deleted_at }
+RSpec.describe User, type: :model do
+  p Reward.all
+  p CampusName.all
+  p Faculty.all
+  it "名前とメールアドレスとパスワードと所属学部・研究科があれば登録できる"
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, 
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable,
-         :confirmable
+  it "論理削除されていれば名前とメールアドレスとパスワードと所属学部・研究科があれば登録できる"
 
-  has_many :boards, dependent: :destroy
-  belongs_to :faculty
-  before_create :join_name
+  it "名前がなければ登録できない"
 
-  def join_name
-    self.name = "#{firstName} #{lastName}"
-  end
+  it "メールアドレスがなければ登録できない"
+
+  it "メールアドレスが重複していたら登録できない"
+
+  it "パスワードがなければ登録できない"
+
+  it "パスワードが暗号化されているか"
+
 end

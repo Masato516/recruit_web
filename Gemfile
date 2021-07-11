@@ -90,6 +90,7 @@ group :development do
   # メールの確認
   gem 'letter_opener'
   gem 'letter_opener_web', '~>1.0'
+  gem 'annotate'
   
 end
 
