@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   protected
   # Deviseのカラム追加分
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :faculty_id, :firstName, :lastName])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :faculty_id, :firstName, :lastName])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :faculty_id, :firstName, :lastName])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name,:name, :faculty_id, :firstName, :lastName])
   end
 
   def storable_location?
