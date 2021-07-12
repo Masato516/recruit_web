@@ -1,12 +1,8 @@
-# == Schema Information
-#
-# Table name: campus_names
-#
-#  id         :bigint           not null, primary key
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-class CampusName < ApplicationRecord
-  has_many :boards
+class CampusName < ActiveHash::Base
+  self.data = [
+    {id: 1, name: '草津'},
+    {id: 2, name: '茨木'},
+    {id: 3, name: '衣笠'},
+    {id: 4, name: 'その他'}
+  ]
 end
