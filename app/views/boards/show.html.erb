@@ -24,7 +24,7 @@
       </tr>
       <tr>
         <th scope="row" class="table-active">投稿者</th>
-        <td colspan="2"><%= @board.user.name %></td>
+        <td colspan="2"><%= @board.user ? @board.user.name : "退会済みアカウント" %></td>
       </tr>
       <tr>
         <th scope="row" class="table-active">実施期間</th>
