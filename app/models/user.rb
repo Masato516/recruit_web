@@ -35,7 +35,13 @@ class User < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # 論理削除の実装
   acts_as_paranoid
-  validates :email, uniqueness: { scope: :deleted_at }
+
+  with_options presence: true do
+    validates :first_name, length: { maximum: 15 }
+    validates :last_name,  length: { maximum: 15 }
+    validates :faculty_id
+    validates :email, uniqueness: { scope: :deleted_at }
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -46,11 +52,10 @@ class User < ApplicationRecord
          :validatable,
          :confirmable
 
-  has_many :boards, dependent: :destroy
+  has_many :boards
   belongs_to :faculty
-  before_create :join_name
 
-  def join_name
-    self.name = "#{firstName} #{lastName}"
+  def name
+    firstName + " " + lastName
   end
 end
