@@ -1,20 +1,72 @@
-CampusName.find_or_create_by(id: 1, name: "草津")
-CampusName.find_or_create_by(id: 2, name: "茨木")
-CampusName.find_or_create_by(id: 3, name: "衣笠")
-CampusName.find_or_create_by(id: 4, name: "その他")
-
-Reward.find_or_create_by(id: 1, name: "報酬なし")
-Reward.find_or_create_by(id: 2, name: "謝金あり")
-Reward.find_or_create_by(id: 3, name: "その他")
-
-faculty_arry = %w(スポーツ健康科学部・研究科 食料マネジメント学部・研究科 理工学部・研究科 情報理工学部・研究科 生命科学部・研究科 薬学部・研究科 経済学部・研究科 経営学部・研究科 政策科学部・研究科 総合心理学部・研究科 グローバル教養学部・研究科 法学部・研究科 産業社会学部・研究科 国際関係学部・研究科 文学部・研究科 映像学部・研究科 その他)
-
-# faculty_arry.map.with_index(1) {|faculty, index|
-#   Faculty.find_or_create_by(
-#     id: index,
-#     name: faculty
-#   )
-# }
-
-user = User.new(firstName: '八木', lastName: '雅斗', admin: true, faculty_id: 1, email: Rails.application.credentials.dig(:admin_user, :email), password: Rails.application.credentials.dig(:admin_user, :password), confirmed_at: Time.now)
+user = User.new(
+  first_name:  '八木', 
+  last_name:   '雅斗', 
+  admin:        true, 
+  faculty_id:   1, 
+  email:        Rails.application.credentials.dig(:admin_user, :email), 
+  password:     Rails.application.credentials.dig(:admin_user, :password), 
+  confirmed_at: Time.now
+)
 user.save!
+
+# 開発用データ
+if Rails.env.development?
+  user1 = User.new(
+                    first_name:  '八木', 
+                    last_name:   '雅斗', 
+                    faculty_id:   1, 
+                    email:        'sample@example.com', 
+                    password:     'password',
+                    confirmed_at: Time.now
+  )
+  user1.save!
+
+  user2 = User.new(
+                    first_name:  'invalid', 
+                    last_name:   'ユーザー', 
+                    faculty_id:   rand(1..17), 
+                    email:        'no_confirmed@example.com', 
+                    password:     'password',
+                    confirmed_at: Time.now
+  )
+  user2.save!
+
+  30.times do
+    sample_user = User.new(
+                            first_name:   Gimei.unique.first.kanji,
+                            last_name:    Gimei.unique.last.kanji,
+                            faculty_id:   rand(1..17),
+                            email:        Faker::Internet.unique.email,
+                            password:     "password",
+                            confirmed_at: Time.now
+                          )
+    sample_user.save!
+  end
+  # TODO: 画像をリッチテキストに保存する
+  # 20.times do
+  #   uploader = ImageUploader.new(:store)
+  #   file = File.new(Rails.root.join('app/images/seed/thor.png'))
+  #   # upload method is to take an IO-like object on the input
+  #   uploaded_file = uploader.upload(file)
+  #   Photo.create!(image_data: uploaded_file.to_json)
+  # end
+
+  20.times do |n|
+    user = User.sample
+    title:           "Title#{n}", 
+    abstract:        "overview#{n}",
+    detail:          "#{photo}<p>#{Faker::Lorem.paragraphs(number: 15).join(' ')}</p>",
+    campus_name_id:  rand(1..4),
+    laboratory:      "lab#{n}",
+    start_day:       Faker::Date.between(from: '2021-01-01', to: '2021-07-01'),
+    finish_day:      Faker::Date.forward(days: 50),
+    place:           Gimei.address,
+    reward_present:  [true, false].sample,
+    reward_content:  "報酬１",
+    required_number: (1..100).sample,
+    charge:          user.name,
+    contact:         Faker::PhoneNumber.cell_phone,
+    endline:         Faker::Date.forward(days: 30),
+    user_id:         user.id
+  end
+end
