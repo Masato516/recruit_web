@@ -28,4 +28,24 @@ class Board < ApplicationRecord
   belongs_to :campus_name
   belongs_to :reward
   belongs_to :user
+
+  with_options presence: true do
+    validates :abstract,        length: { maximum: 15 }
+    validates :contact,         length: { maximum: 50 }
+    validates :detail
+    validates :endline
+    validates :finish_day
+    validates :laboratory
+    validates :required_number, length: { maximum: 100 }
+    validates :place,           length: { maximum: 100 }
+    validates :reward_content
+    validates :start_day
+    validates :title,           length: { maximum: 50 }
+    validates :reward_id
+  end
+
+  enum reward_present: {
+    "報酬あり": true,
+    "報酬なし": false
+  }
 end
