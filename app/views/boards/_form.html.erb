@@ -64,13 +64,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :number, "募集人数" %>
-    <%= f.number_field :number, min: 1, required: true, autofocus: true, autocomplete: 'number', class: 'form-control'%>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :charge, "責任者" %>
-    <%= f.text_field :charge, required: true, autofocus: true, autocomplete: 'charge', class: 'form-control' %>
+    <%= f.label :required_number, "募集人数" %>
+    <%= f.number_field :number, min: 1, required: true, autofocus: true, class: 'form-control'%>
   </div>
 
   <div class="form-group">
@@ -81,7 +76,7 @@
 
   <div class="form-group">
     <%= f.label :endline, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, autocomplete: 'start_day', class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
@@ -90,6 +85,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "被験者を募集する", onclick:"window.onbeforeunload=null", class:"btn btn-primary btn-block" %>
+    <%= f.submit @board.new_record? ? "投稿" : "更新", onclick:"window.onbeforeunload=null", class:"btn btn-primary btn-block" %>
   </div>
 <% end %>

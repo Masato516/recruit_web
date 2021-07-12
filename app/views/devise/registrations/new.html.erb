@@ -1,19 +1,19 @@
 <div class="container">
 
   <h1><%= t('.sign_up') %></h1>
-
+  <% #TODO: formの共通テンプレを作る %>
   <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 
     <%= bootstrap_devise_error_messages! %>
 
     <div class="form-group row">
       <div class="col-sm-6">
-        <%= f.label :firstName, "姓" %>
-        <%= f.text_field :firstName, autofocus: true, required: true, class: 'form-control' %>
+        <%= f.label :first_name, "姓" %>
+        <%= f.text_field :last_name, autofocus: true, required: true, class: 'form-control' %>
       </div>
       <div class="col-sm-6">
-        <%= f.label :lastName, "名" %>
-        <%= f.text_field :lastName, autofocus: true, required: true, class: 'form-control' %>
+        <%= f.label :last_name, "名" %>
+        <%= f.text_field :last_name, autofocus: true, required: true, class: 'form-control' %>
       </div>
     </div>
 
