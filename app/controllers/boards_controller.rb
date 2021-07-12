@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @pagy, @boards = pagy(Board.all.order(id: :DESC).preload(:campus_name, :reward, :user))
+    @pagy, @boards = pagy(Board.all.order(id: :updated_at).preload(:campus_name, :reward, :user))
   end
 
   # GET /boards/1
