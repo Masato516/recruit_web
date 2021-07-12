@@ -27,6 +27,7 @@ class BoardsController < ApplicationController
     check_box = params[:board][:check]
     @board = Board.new(board_params)
     
+    # TODO: メソッド化 or ヘルパー化する
     if check_box == "0"
       redirect_to @board, notice: '募集要項を作成しました'
     elsif @board.save && @board.reward.name == "謝金なし"
@@ -60,11 +61,11 @@ class BoardsController < ApplicationController
   # DELETE /boards/1
   def destroy
     @board.destroy
-      redirect_to boards_url, notice: '募集要項を削除しました'
+    redirect_to boards_url, notice: '募集要項を削除しました'
   end
 
   private
-  
+
     def set_board
       @board = Board.find(params[:id])
     end
