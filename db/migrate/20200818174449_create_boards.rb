@@ -1,20 +1,20 @@
 class CreateBoards < ActiveRecord::Migration[5.2]
   def change
     create_table :boards do |t|
-      t.string :title
-      t.text :abstract
-      t.text :detail
-      t.integer :campus_name_id
-      t.string :laboratory
-      t.date :start_day
-      t.date :finish_day
-      t.string :place
-      t.integer :reward_id
-      t.string :reward_content
-      t.integer :number
-      t.string :charge
-      t.string :contact
-      t.date :endline
+      t.string  :title,           null: false
+      t.text    :abstract,        null: false
+      t.text    :detail,          null: false
+      t.integer :campus_name_id,  null: false, unsigned: true
+      t.string  :laboratory,      null: false, defaul: ""
+      t.date    :start_day,       null: false
+      t.date    :finish_day,      null: false
+      t.string  :place,           null: false
+      t.boolean :reward_present,  null: false, defalut: false
+      t.string  :reward_content,  null: false, default: "報酬はありません"
+      t.integer :required_number, null: false, unsigned: true
+      t.string  :contact,         null: false
+      t.date    :endline,         null: false
+      t.integer :user_id,         null: false, unsigned: true
 
       t.timestamps
     end

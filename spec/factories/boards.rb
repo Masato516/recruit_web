@@ -32,8 +32,7 @@ FactoryBot.define do
     sequence (:place) { |n| "インテグ#{n}階" }
     # sequence (:reward_id) { |n| n }
     sequence (:reward_content) { |n| "#{n}０００円" }
-    sequence (:number) { |n| "1#{n}" }
-    charge { '八木' }
+    sequence (:required_number) { |n| "1#{n}" }
     sequence (:contact) { |n| "#{n}@ed.ritsumei.ac.jp" }
     endline { "2020-10-01" }
     user
