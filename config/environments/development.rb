@@ -75,6 +75,6 @@ Rails.application.configure do
 
   config.assets.precompile += ['application.js']
   # Cannot render console from <IPアドレス>!」への対処法
-  # DockerのGatewayのipアドレスをホワイトリストに入れる(少しviewのrenderが早くなった？)
+  # DockerのGatewayのipアドレスをホワイトリストに入れる
   config.web_console.whitelisted_ips = '172.18.0.1'
 end
