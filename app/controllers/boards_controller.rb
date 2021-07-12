@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create]
-  before_action :valid_user?, only: [:edit, :update, :destroy]
+  before_action :valid_authenticate_user!, only: [:edit, :update, :destroy]
   before_action :twitter_client, only: [:create, :update]
 
   # GET /boards
@@ -80,17 +80,21 @@ class BoardsController < ApplicationController
                                     :place, 
                                     :reward_id, 
                                     :reward_content, 
-                                    :number, :charge, 
+                                    :required_number, 
+                                    :charge, 
                                     :contact, 
                                     :endline)
                                     .merge(user_id: current_user.id)
     end
 
-    def valid_user?
+    def valid_authenticate_user!
+      # TODO: redirect_back をなぜ利用したか、どのように動くか確認！
       board = Board.find(params[:id])
-      unless current_user.id == board.user_id 
+
+      # ユーザーが削除されているとboardのuser_idがnilになる可能性があるため、ぼっち演算子を利用
+      unless current_user.id == board&.user_id 
         flash[:danger] = '作成ユーザーでないと編集できません'
-        redirect_back(fallback_location: board_path(board))
+        redirect_back fallback_location: board_path(board)
       end
     end
 
