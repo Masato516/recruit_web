@@ -22,6 +22,9 @@
 #  user_id        :integer
 #
 class Board < ApplicationRecord
+  # ActiveHashの関連付け
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  
   belongs_to :campus_name
   belongs_to :reward
   belongs_to :user

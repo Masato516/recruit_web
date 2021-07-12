@@ -31,8 +31,9 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  attr_accessor :firstName, :lastName
-
+  # ActiveHashの関連付け
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  # 論理削除の実装
   acts_as_paranoid
   validates :email, uniqueness: { scope: :deleted_at }
 
