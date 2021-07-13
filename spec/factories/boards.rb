@@ -4,15 +4,15 @@
 #
 #  id              :bigint           not null, primary key
 #  abstract        :text(65535)      not null
-#  contact         :string(255)      not null
+#  contact_detail  :string(255)      not null
 #  detail          :text(65535)      not null
 #  finish_day      :date             not null
-#  laboratory      :string(255)      not null
-#  place           :string(255)      default("")
+#  laboratory      :string(255)      default(""), not null
+#  place           :string(255)      default(""), not null
 #  public_end_date :date             not null
 #  required_number :integer          unsigned, not null
-#  reward_content  :string(255)      default("報酬はありません"), not null
-#  reward_present  :boolean
+#  reward_content  :string(255)      default(""), not null
+#  reward_present  :boolean          not null
 #  start_day       :date             not null
 #  title           :string(255)      not null
 #  created_at      :datetime         not null
@@ -32,7 +32,7 @@ FactoryBot.define do
     # sequence (:reward_present) { |n| n }
     sequence (:reward_content) { |n| "#{n}０００円" }
     sequence (:required_number) { |n| "1#{n}" }
-    sequence (:contact) { |n| "#{n}@ed.ritsumei.ac.jp" }
+    sequence (:contact_detail) { |n| "#{n}@ed.ritsumei.ac.jp" }
     public_end_date { "2020-10-01" }
     user
     campus_name

@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 2020_08_20_061835) do
     t.text "abstract", null: false
     t.text "detail", null: false
     t.integer "campus_name_id", null: false, unsigned: true
-    t.string "laboratory", null: false
+    t.string "laboratory", default: "", null: false
     t.date "start_day", null: false
     t.date "finish_day", null: false
-    t.string "place", default: ""
-    t.boolean "reward_present"
-    t.string "reward_content", default: "報酬はありません", null: false
+    t.string "place", default: "", null: false
+    t.boolean "reward_present", null: false
+    t.string "reward_content", default: "", null: false
     t.integer "required_number", null: false, unsigned: true
-    t.string "contact", null: false
+    t.string "contact_detail", null: false
     t.date "public_end_date", null: false
     t.integer "user_id", null: false, unsigned: true
     t.datetime "created_at", null: false
