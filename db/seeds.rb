@@ -52,21 +52,23 @@ if Rails.env.development?
   # end
 
   20.times do |n|
-    user = User.sample
-    title:           "Title#{n}", 
-    abstract:        "overview#{n}",
-    detail:          "#{photo}<p>#{Faker::Lorem.paragraphs(number: 15).join(' ')}</p>",
-    campus_name_id:  rand(1..4),
-    laboratory:      "lab#{n}",
-    start_day:       Faker::Date.between(from: '2021-01-01', to: '2021-07-01'),
-    finish_day:      Faker::Date.forward(days: 50),
-    place:           Gimei.address,
-    reward_present:  [true, false].sample,
-    reward_content:  "報酬１",
-    required_number: (1..100).sample,
-    charge:          user.name,
-    contact:         Faker::PhoneNumber.cell_phone,
-    endline:         Faker::Date.forward(days: 30),
-    user_id:         user.id
+    user = User.offset( rand(User.count) ).first
+    board = Board.new(
+                      title:           "Title#{n}", 
+                      abstract:        "overview#{n}",
+                      detail:          "<p>#{Faker::Lorem.paragraphs(number: 15).join(' ')}</p>",
+                      campus_name_id:  rand(1..4),
+                      laboratory:      "lab#{n}",
+                      start_day:       Faker::Date.between(from: '2021-01-01', to: '2021-07-01'),
+                      finish_day:      Faker::Date.forward(days: 50),
+                      place:           Gimei.address,
+                      reward_present:  ["報酬あり", "報酬なし"].sample,
+                      reward_content:  "報酬１",
+                      required_number: rand(1..100),
+                      contact:         Faker::PhoneNumber.cell_phone,
+                      public_end_date: Faker::Date.forward(days: 30),
+                      user_id:         user.id
+                      )
+    board.save!
   end
 end
