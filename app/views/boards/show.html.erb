@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <th scope="row" class="table-active">報酬</th>
-        <td colspan="2"><%= @board.reward.name %>：<%= @board.reward_content %></td>
+        <td colspan="2"><%= @board.reward_present ? @board.reward_content : "なし" %></td>
       </tr>
       <tr>
         <th scope="row" class="table-active">研究室</th>
@@ -32,19 +32,15 @@
       </tr>
       <tr>
         <th scope="row" class="table-active">応募人数</th>
-        <td colspan="2"><%= @board.number %>人</td>
+        <td colspan="2"><%= @board.required_number %>人</td>
       </tr>
       <tr>
         <th scope="row" class="table-active">連絡先</th>
-        <td colspan="2"><%= @board.contact %></td>
+        <td colspan="2"><%= @board.contact_detail %></td>
       </tr>
       <tr>
         <th scope="row" class="table-active">詳細</th>
         <td colspan="2"><%= sanitize @board.detail, class: "" %></td>
-      </tr>
-      <tr>
-        <th scope="row" class="table-active">責任者</th>
-        <td colspan="2"><%= @board.charge %></td>
       </tr>
       <tr>
         <th scope="row" class="table-active">応募締切日</th>
