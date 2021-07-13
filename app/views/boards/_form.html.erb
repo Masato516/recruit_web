@@ -15,17 +15,17 @@
 
   <div class="form-group">
     <%= f.label :title, "実験課題名" %>
-    <%= f.text_field :title,  required: true, autofocus: true, class: 'form-control' %>
+    <%= f.text_field :title,  required: true, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :abstract, "概要" %>
-    <%= f.text_area :abstract, required: true, autofocus: true, class: 'form-control' %>
+    <%= f.text_area :abstract, required: true, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :detail, "詳細" %>
-    <%= f.hidden_field :detail, id: :board_detail, required: true, autofocus: true, class: 'form-control' %>
+    <%= f.hidden_field :detail, id: :board_detail, required: true, class: 'form-control' %>
   </div>
   
   <trix-editor input="board_detail", id="trix-editor"></trix-editor>
@@ -38,45 +38,45 @@
 
   <div class="form-group">
     <%= f.label :laboratory, "研究室名" %>
-    <%= f.text_field :laboratory, required: true, autofocus: true, autocomplete: 'laboratory', class: 'form-control' %>
+    <%= f.text_field :laboratory, required: true, autocomplete: 'laboratory', class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :start_day, "実施期間" %>
-    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, class:'form-control' ),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:start_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control' ),'年','月')+'日' %>
     ~
-    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:finish_day, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
     <%= f.label :place, "実施場所" %>
-    <%= f.text_field :place, required: true, autofocus: true, autocomplete: 'field', class: 'form-control' %>
+    <%= f.text_field :place, required: true, autocomplete: 'field', class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :reward_id, "謝礼の有無" %>
-    <%= f.select :reward_id, Reward.all.map { |reward| [reward.name, reward.id] } %>
+    <%= f.label :reward_present, "謝礼の有無" %>
+    <%= f.select :reward_present, [['謝礼あり', true], ['謝礼なし', false]] } %>
   </div>
 
   <div class="form-group">
     <%= f.label :reward_content, "報酬内容" %>
-    <%= f.text_field :reward_content, required: true, autofocus: true, class: 'form-control' %>
+    <%= f.text_field :reward_content, required: true, class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :required_number, "募集人数" %>
-    <%= f.number_field :number, min: 1, required: true, autofocus: true, class: 'form-control'%>
+    <%= f.number_field :required_number, min: 1, required: true, class: 'form-control'%>
   </div>
 
   <div class="form-group">
     <%= f.label :contact, "連絡先(LINEのIDやメールアドレスなど)" %>
-    <%= f.text_field :contact, required: true, autofocus: true, autocomplete: 'contact', class: 'form-control' %>
+    <%= f.text_field :contact, required: true, autocomplete: 'contact', class: 'form-control' %>
     <small class="form-text text-muted">先頭に"LINEのID"などを記述するようにお願いします</small>
   </div>
 
   <div class="form-group">
     <%= f.label :endline, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, autofocus: true, class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
