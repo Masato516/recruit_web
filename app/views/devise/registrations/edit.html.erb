@@ -8,7 +8,7 @@
 
     <div class="form-group row">
       <div class="col-sm-6">
-        <%= f.label :first_name, "姓" %>
+        <%= f.label :last_name, "姓" %>
         <%= f.text_field :last_name, autofocus: true, autocomplete: 'family-name', required: true, class: 'form-control' %>
       </div>
       <div class="col-sm-6">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :faculty_id, "所属学部・研究科" %>
+      <%= f.label :faculty_id, "所属" %>
       <%= f.select :faculty_id, Faculty.all.map { |faculty| [faculty.name, faculty.id] } %>
     </div>
 
@@ -26,6 +26,13 @@
       <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
       <small class="form-text text-muted">学内メール(@**.ritsumei.ac.jp)でないと登録できません</small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+
+      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
     </div>
 
     <div class="form-group">
@@ -38,13 +45,6 @@
     <div class="form-group">
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
-
-      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
     </div>
 
     <div class="form-group">

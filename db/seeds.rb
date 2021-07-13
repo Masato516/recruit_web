@@ -1,6 +1,6 @@
 user = User.new(
-  first_name:  '八木', 
-  last_name:   '雅斗', 
+  last_name:   '八木',
+  first_name:  '雅斗',
   admin:        true, 
   faculty_id:   1, 
   email:        Rails.application.credentials.dig(:admin_user, :email), 
@@ -12,8 +12,8 @@ user.save!
 # 開発用データ
 if Rails.env.development?
   user1 = User.new(
-                    first_name:  '八木', 
-                    last_name:   '雅斗', 
+                    last_name:   '八木',
+                    first_name:  '雅斗', 
                     faculty_id:   1, 
                     email:        'sample@example.com', 
                     password:     'password',
@@ -22,8 +22,8 @@ if Rails.env.development?
   user1.save!
 
   user2 = User.new(
-                    first_name:  'invalid', 
-                    last_name:   'ユーザー', 
+                    last_name:   'invalid', 
+                    first_name:  'ユーザー', 
                     faculty_id:   rand(1..17), 
                     email:        'no_confirmed@example.com', 
                     password:     'password',
@@ -59,14 +59,14 @@ if Rails.env.development?
                       detail:          "<p>#{Faker::Lorem.paragraphs(number: 15).join(' ')}</p>",
                       campus_name_id:  rand(1..4),
                       laboratory:      "lab#{n}",
-                      start_day:       Faker::Date.between(from: '2021-01-01', to: '2021-07-01'),
-                      finish_day:      Faker::Date.forward(days: 50),
+                      start_day:       Faker::Date.between(from: Date.today, to: Date.today + 29),
+                      finish_day:      Faker::Date.between(from: Date.today + 30, to: Date.today + 60),
                       place:           Gimei.address,
                       reward_present:  ["報酬あり", "報酬なし"].sample,
                       reward_content:  "報酬１",
                       required_number: rand(1..100),
-                      contact:         Faker::PhoneNumber.cell_phone,
-                      public_end_date: Faker::Date.forward(days: 30),
+                      contact_detail:  Faker::PhoneNumber.cell_phone,
+                      public_end_date: Faker::Date.between(from: Date.today + 30, to: Date.today + 60),
                       user_id:         user.id
                       )
     board.save!
