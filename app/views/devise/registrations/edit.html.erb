@@ -9,11 +9,11 @@
     <div class="form-group row">
       <div class="col-sm-6">
         <%= f.label :first_name, "姓" %>
-        <%= f.text_field :last_name, autofocus: true, required: true, class: 'form-control' %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: 'family-name', required: true, class: 'form-control' %>
       </div>
       <div class="col-sm-6">
-        <%= f.label :last_name, "名" %>
-        <%= f.text_field :last_name, autofocus: true, required: true, class: 'form-control' %>
+        <%= f.label :first_name, "名" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: 'given-name', required: true, class: 'form-control' %>
       </div>
     </div>
 
