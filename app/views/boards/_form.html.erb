@@ -75,8 +75,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :endline, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:endline, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control'),'年','月')+'日' %>
+    <%= f.label :public_end_date, "募集締切日" %>
+    <%= raw sprintf(f.date_select(:public_end_date, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">

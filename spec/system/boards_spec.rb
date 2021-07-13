@@ -23,10 +23,10 @@ describe '掲示板管理機能', type: :system do
     context 'ユーザーAとしてログインしている時' do
       include_context 'ユーザーAとしてログイン'
 
-      # 募集要項表示の確認
-      shared_example '' do
-        it { is_expected.to eq '' }
-      end
+      # # 募集要項表示の確認
+      # shared_example '' do
+      #   it { is_expected.to eq '' }
+      # end
 
       context '募集要項の作成者がAの時' do
         let(:creator_user) { user_a }

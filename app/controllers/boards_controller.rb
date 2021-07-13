@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @pagy, @boards = pagy(Board.all.order(id: :updated_at).preload(:campus_name, :reward, :user))
+    @pagy, @boards = pagy(Board.all.order(updated_at: :DESC).preload(:campus_name, :user))
   end
 
   # GET /boards/1
@@ -79,12 +79,11 @@ class BoardsController < ApplicationController
                                     :start_day, 
                                     :finish_day, 
                                     :place, 
-                                    :reward_id, 
+                                    :reward_present, 
                                     :reward_content, 
-                                    :required_number, 
-                                    :charge, 
-                                    :contact, 
-                                    :endline)
+                                    :required_number,
+                                    :contact,
+                                    :public_end_date)
                                     .merge(user_id: current_user.id)
     end
 

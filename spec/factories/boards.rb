@@ -2,24 +2,23 @@
 #
 # Table name: boards
 #
-#  id             :bigint           not null, primary key
-#  abstract       :text(65535)
-#  charge         :string(255)
-#  contact        :string(255)
-#  detail         :text(65535)
-#  endline        :date
-#  finish_day     :date
-#  laboratory     :string(255)
-#  number         :integer
-#  place          :string(255)
-#  reward_content :string(255)
-#  start_day      :date
-#  title          :string(255)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  campus_name_id :integer
-#  reward_id      :integer
-#  user_id        :integer
+#  id              :bigint           not null, primary key
+#  abstract        :text(65535)      not null
+#  contact         :string(255)      not null
+#  detail          :text(65535)      not null
+#  finish_day      :date             not null
+#  laboratory      :string(255)      not null
+#  place           :string(255)      default("")
+#  public_end_date :date             not null
+#  required_number :integer          unsigned, not null
+#  reward_content  :string(255)      default("報酬はありません"), not null
+#  reward_present  :boolean
+#  start_day       :date             not null
+#  title           :string(255)      not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  campus_name_id  :integer          unsigned, not null
+#  user_id         :integer          unsigned, not null
 #
 FactoryBot.define do
   factory :board do
@@ -30,11 +29,11 @@ FactoryBot.define do
     start_day { "2020-08-23" }
     finish_day { "2020-08-28" }
     sequence (:place) { |n| "インテグ#{n}階" }
-    # sequence (:reward_id) { |n| n }
+    # sequence (:reward_present) { |n| n }
     sequence (:reward_content) { |n| "#{n}０００円" }
     sequence (:required_number) { |n| "1#{n}" }
     sequence (:contact) { |n| "#{n}@ed.ritsumei.ac.jp" }
-    endline { "2020-10-01" }
+    public_end_date { "2020-10-01" }
     user
     campus_name
     reward

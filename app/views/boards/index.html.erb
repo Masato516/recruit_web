@@ -31,7 +31,7 @@
             <%= link_to "詳細", board_path(board), class: "card-link btn btn-primary", role: "button" %>
             <p class="card-text">
               <small>
-                応募締切　<%= l board.endline %>まで
+                応募締切　<%= l board.public_end_date %>まで
               </small>
             </p>
             <% if board.user_id == current_user&.id %>

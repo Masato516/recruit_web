@@ -8,12 +8,12 @@ class CreateBoards < ActiveRecord::Migration[5.2]
       t.string  :laboratory,      null: false, defaul: ""
       t.date    :start_day,       null: false
       t.date    :finish_day,      null: false
-      t.string  :place,           null: false
-      t.boolean :reward_present,  null: false, defalut: false
+      t.string  :place,           default: ""
+      t.boolean :reward_present,  defalut: false
       t.string  :reward_content,  null: false, default: "報酬はありません"
       t.integer :required_number, null: false, unsigned: true
       t.string  :contact,         null: false
-      t.date    :endline,         null: false
+      t.date    :public_end_date, null: false
       t.integer :user_id,         null: false, unsigned: true
 
       t.timestamps
