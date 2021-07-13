@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @pagy, @boards = pagy(Board.all.order(updated_at: :DESC).preload(:campus_name, :user))
+    @pagy, @boards = pagy(Board.all.order(updated_at: :DESC).preload(:user))
   end
 
   # GET /boards/1
@@ -24,17 +24,20 @@ class BoardsController < ApplicationController
 
   # POST /boards
   def create
-    check_box = params[:board][:check]
     @board = Board.new(board_params)
-    
+    # ツイートの有無を取得
+    required_tweet = params[:board][:required_tweet]
+
     # TODO: メソッド化 or ヘルパー化する
-    if check_box == "0"
-      redirect_to @board, notice: '募集要項を作成しました'
-    elsif @board.save && @board.reward.name == "謝金なし"
-      @client.update("#{@board.title} #{board_url(@board.id)}")
-      redirect_to @board, notice: '募集要項を作成しました'
-    elsif @board.save
-      @client.update("#{@board.title} #{board_url(@board.id)}\n #謝金あり")
+    if @board.save
+      if required_tweet
+        # boardを作成し,idが付与されてからURLを作成する必要あり
+        tweet_content = "#{@board.title} #{board_url(@board.id)} "
+        # ツイート内容の作成
+        tweet_content += "#謝礼あり" if @board.reward_present?
+        # ツイートする必要があれば、ツイートする
+        @client.update(tweet_content)
+      end
       redirect_to @board, notice: '募集要項を作成しました'
     else
       render :new
@@ -43,15 +46,18 @@ class BoardsController < ApplicationController
 
   # PATCH/PUT /boards/1
   def update
-    check_box = params[:board][:check]
+    # ツイートの有無を取得
+    required_tweet = params[:board][:required_tweet]
 
-    if @board.update(board_params) && check_box == "0"
-      redirect_to @board, notice: '募集要項を更新しました'
-    elsif @board.update(board_params) && @board.reward.name == "謝金なし"
-      @client.update("#{@board.title} #{board_url(@board.id)}")
-      redirect_to @board, notice: '募集要項を更新しました'
-    elsif @board.update(board_params)
-      @client.update("#{@board.title} #{board_url(@board.id)}\n #謝金あり")
+    if @board.update(board_params)
+      if required_tweet
+        # boardを作成し,idが付与されてからURLを作成する必要あり
+        tweet_content = "#{@board.title} #{board_url(@board.id)} "
+        # ツイート内容の作成
+        tweet_content += "#謝礼あり" if @board.reward_present?
+        # ツイートする必要があれば、ツイートする
+        @client.update(tweet_content)
+      end
       redirect_to @board, notice: '募集要項を更新しました'
     else
       render :edit
@@ -61,7 +67,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1
   def destroy
     @board.destroy
-    redirect_to boards_url, notice: '募集要項を削除しました'
+    redirect_to boards_path, notice: '募集要項を削除しました'
   end
 
   private
@@ -82,7 +88,7 @@ class BoardsController < ApplicationController
                                     :reward_present, 
                                     :reward_content, 
                                     :required_number,
-                                    :contact,
+                                    :contact_detail,
                                     :public_end_date)
                                     .merge(user_id: current_user.id)
     end
