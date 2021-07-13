@@ -1,4 +1,22 @@
 ja:
+  activerecord:
+    models:
+      board: 募集要項
+    attributes:
+      board:
+        title: タイトル
+        abstract: 概要
+        detail: 詳細
+        laboratory: 研究室・ゼミ名
+        campus_name: キャンパス名
+        place: 実施場所
+        reward_present: 報酬の有無
+        reward_content: 報酬内容
+        required_number: 募集人数
+        contact_detail: 連絡先
+        start_day: 実施開始日時
+        finish_day: 実施終了日時
+        public_end_date: 募集締切日
   date:
     formats:
       default: ! '%Y/%m/%d'
