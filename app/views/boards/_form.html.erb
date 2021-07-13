@@ -1,12 +1,12 @@
 <%= javascript_include_tag 'trix_uploads.js' %>
 
-<%= form_with(model: board, local: true) do |f| %>
-  <% if board.errors.any? %>
+<%= form_with(model: @board, local: true) do |f| %>
+  <% if @board.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
+      <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
 
       <ul>
-      <% board.errors.full_messages.each do |message| %>
+      <% @board.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -55,7 +55,7 @@
 
   <div class="form-group">
     <%= f.label :reward_present, "謝礼の有無" %>
-    <%= f.select :reward_present, [['謝礼あり', true], ['謝礼なし', false]] } %>
+    <%= f.select :reward_present, [['謝礼なし', false], ['謝礼あり', true]] %>
   </div>
 
   <div class="form-group">
@@ -69,19 +69,19 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :contact, "連絡先(LINEのIDやメールアドレスなど)" %>
-    <%= f.text_field :contact, required: true, autocomplete: 'contact', class: 'form-control' %>
+    <%= f.label :contact_detail, "連絡先(LINEのIDやメールアドレスなど)" %>
+    <%= f.text_field :contact_detail, required: true, autocomplete: 'contact_detail', class: 'form-control' %>
     <small class="form-text text-muted">先頭に"LINEのID"などを記述するようにお願いします</small>
   </div>
 
   <div class="form-group">
     <%= f.label :public_end_date, "募集締切日" %>
-    <%= raw sprintf(f.date_select(:public_end_date, use_month_numbers: true, start_year:2020, date_separator:'%s', required: true, class:'form-control'),'年','月')+'日' %>
+    <%= raw sprintf(f.date_select(:public_end_date, start_year: Date.today.year, end_year: Date.today.year + 10, default: Date.today, use_month_numbers: true, date_separator: '%s'),'年','月')+'日' %>
   </div>
 
   <div class="form-group">
-    <%= f.check_box :check %>
-    <%= f.label :check, "連携アカウントによるツイート" %>
+    <%= f.check_box :required_tweet, {checked: true}, true, false %>
+    <%= f.label :required_tweet, "連携アカウントによるツイート" %>
   </div>
 
   <div class="actions">
