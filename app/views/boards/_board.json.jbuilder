@@ -10,7 +10,7 @@ json.extract! board, :id,
                      :reward_present,
                      :reward_content,
                      :required_number,
-                     :contact, 
+                     :contact_detail, 
                      :public_end_date, 
                      :created_at, 
                      :updated_at
